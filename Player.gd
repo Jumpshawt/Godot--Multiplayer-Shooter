@@ -98,7 +98,7 @@ func process_input(delta):
 	vert.y += GRAVITY * delta
 
 func process_movement(delta):
-	if direction != Vector3():
+	if direction != Vector3() or not is_on_floor():
 		if is_network_master():
 			move_and_slide(vert + direction * speed, Vector3.UP)
 			
