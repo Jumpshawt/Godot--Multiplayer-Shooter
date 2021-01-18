@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="Game" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.82105, 0.570857, 0, -0.570857, 0.82105, -4.76837e-07, 4.99124, 6.44107 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 6.25, 0, 0, 0, 1, 0, 0, 0, 5.8, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Player1Pos" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.32415, 1.31379, 2.98968 )
+
+[node name="Player2Pos" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54272, 1.31379, 2.98968 )
+
+[node name="SpotLight" type="SpotLight" parent="Player2Pos"]
+transform = Transform( 1, 0, 0, 0, 0.721821, 0.69208, 0, -0.69208, 0.721821, 0.177607, 5.69193, 2.99979 )
+light_energy = 6.39
+shadow_enabled = true
+spot_range = 12.68
+spot_angle = 67.2569
