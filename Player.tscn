@@ -26,6 +26,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21219, 0 )
 [node name="Camera" type="Camera" parent="Rotation_Helper"]
 
 [node name="RayCast" type="RayCast" parent="Rotation_Helper/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.941317 )
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Rotation_Helper"]
 transform = Transform( -0.142142, 0, 0, 0, 0.186835, 0, 0, 0, 0.995925, 0, -0.990455, -1.55227 )

@@ -87,12 +87,11 @@ func process_input(delta):
 	
 	
 	if is_on_floor():
-		print("on floor")
 		vert.y = 0
 		if Input.is_action_just_pressed("jump"):
 			print("pressed jump")
 			vert.y = JUMP_SPEED
-#			direction.y += JUMP_SPEED
+			direction += transform.basis.x
 	
 #	print("not on floor")
 	vert.y += GRAVITY * delta
@@ -102,7 +101,7 @@ func process_movement(delta):
 		if is_network_master():
 			move_and_slide(vert + direction * speed, Vector3.UP)
 			
-		rpc_unreliable("_set_position", global_transform.origin)
+			rpc_unreliable("_set_position", global_transform.origin)
 		
 
 #processes mouse rotation shit
