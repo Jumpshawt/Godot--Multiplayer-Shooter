@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 
@@ -8,6 +8,8 @@ height = 2.25743
 
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.65559, 0.573848, 0.177411 )
+
+[sub_resource type="CubeMesh" id=4]
 
 [sub_resource type="CapsuleMesh" id=2]
 radius = 0.6
@@ -25,11 +27,16 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.5
 shape = SubResource( 3 )
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21219, 0 )
 
 [node name="Model" type="Spatial" parent="Rotation_Helper"]
 
 [node name="Camera" type="Camera" parent="Rotation_Helper"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.698817, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Rotation_Helper"]
+transform = Transform( -0.142142, 0, 0, 0, 0.186835, 0, 0, 0, 0.995925, 0, -0.990455, -1.55227 )
+mesh = SubResource( 4 )
+material/0 = null
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
