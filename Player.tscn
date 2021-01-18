@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.730002
 height = 2.25743
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.65559, 0.573848, 0.177411 )
 
 [sub_resource type="CapsuleMesh" id=2]
 radius = 0.6
@@ -13,9 +16,20 @@ mid_height = 2.4
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="Body_CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
+
+[node name="Feet_CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.51438, 0 )
+shape = SubResource( 3 )
+
+[node name="Rotation_Helper" type="Spatial" parent="."]
+
+[node name="Model" type="Spatial" parent="Rotation_Helper"]
+
+[node name="Camera" type="Camera" parent="Rotation_Helper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.698817, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )

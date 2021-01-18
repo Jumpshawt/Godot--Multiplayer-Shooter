@@ -12,12 +12,20 @@ var direction = Vector3()
 #set position is called by the client
 remote func _set_position(pos):
 	global_transform.origin = pos
-
+	
+#test line plz remove later
 remote func _printshit(lol):
 	print("lolepic")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print('test')
+	if !is_network_master():
+		print('rotate helper master true')
+		$Rotation_Helper/Camera.current = false
+	else:
+		$Rotation_Helper/Camera.current = true
+		print('rotate helper master false')
 	pass # Replace with function body.
 
 func _physics_process(delta):
