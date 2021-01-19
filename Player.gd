@@ -44,6 +44,7 @@ remote func _set_rotation(rot_x, rot_y):
 	self.rotation_degrees = rot_y
 #death
 remote func _death(name):
+	$damage.emitting = true
 	print(name)
 	$RichTextLabel.visible = true
 	self.global_transform = Globals.respawn1
@@ -167,6 +168,7 @@ func fire_weapon():
 			
 			if body == player_node:
 				print("player node")
+
 				pass
 			if body.has_method("bullet_hit"):
 				print("bullet hit")

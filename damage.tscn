@@ -52,6 +52,7 @@ material = SubResource( 4 )
 size = Vector2( 2, 2 )
 
 [node name="damage" type="Particles"]
+emitting = false
 lifetime = 0.5
 preprocess = 1.0
 speed_scale = 2.0
