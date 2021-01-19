@@ -1,13 +1,12 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://scifigun.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.65559, 0.573848, 1.79635 )
 
-[sub_resource type="CubeMesh" id=2]
-
-[sub_resource type="CapsuleMesh" id=3]
+[sub_resource type="CapsuleMesh" id=2]
 radius = 0.6
 mid_height = 2.4
 
@@ -37,15 +36,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21219, 0 )
 [node name="Camera" type="Camera" parent="Rotation_Helper"]
 
 [node name="RayCast" type="RayCast" parent="Rotation_Helper/Camera"]
-cast_to = Vector3( 0, 0, -10 )
+cast_to = Vector3( 0, 0, -1000 )
 collide_with_areas = true
 
-[node name="MeshInstance" type="MeshInstance" parent="Rotation_Helper"]
-transform = Transform( -0.142142, 0, 0, 0, 0.186835, 0, 0, 0, 0.995925, 0, -0.990455, -1.55227 )
-mesh = SubResource( 2 )
-material/0 = null
+[node name="scifigun" parent="Rotation_Helper/Camera" instance=ExtResource( 2 )]
+transform = Transform( -1, 2.22019e-08, 3.25084e-07, 0, 0.997676, -0.0681372, -3.25841e-07, -0.0681372, -0.997676, 0.725, -0.388, -1.227 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
