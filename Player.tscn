@@ -2,12 +2,12 @@
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 0.65559, 0.573848, 0.177411 )
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.65559, 0.573848, 1.79635 )
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=2]
 
-[sub_resource type="CapsuleMesh" id=2]
+[sub_resource type="CapsuleMesh" id=3]
 radius = 0.6
 mid_height = 2.4
 
@@ -15,8 +15,8 @@ mid_height = 2.4
 script = ExtResource( 1 )
 
 [node name="Feet_CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.2267, 0 )
-shape = SubResource( 3 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.343881, 0 )
+shape = SubResource( 1 )
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21219, 0 )
@@ -26,16 +26,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21219, 0 )
 [node name="Camera" type="Camera" parent="Rotation_Helper"]
 
 [node name="RayCast" type="RayCast" parent="Rotation_Helper/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.941317 )
-enabled = true
-cast_to = Vector3( 0, 0, -1 )
+cast_to = Vector3( 0, 0, -10 )
+collide_with_areas = true
 
 [node name="MeshInstance" type="MeshInstance" parent="Rotation_Helper"]
 transform = Transform( -0.142142, 0, 0, 0, 0.186835, 0, 0, 0, 0.995925, 0, -0.990455, -1.55227 )
-mesh = SubResource( 4 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 material/0 = null

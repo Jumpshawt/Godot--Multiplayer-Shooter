@@ -34,16 +34,23 @@ const DAMAGE = 4
 remote func _set_position(pos):
 	global_transform.origin = pos
 remote func _set_rotation(rot_x, rot_y):
-	
 	$Rotation_Helper.rotation_degrees = rot_x
 	self.rotation_degrees = rot_y
-	
+#death
+remote func _death(name):
+	print(name)
+	if name == self.name:
+		print("death")
 ##test line plz remove later
 #remote func _printshit(lol):
 #	print("lolepic")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if is_network_master():
+		print("network master is", self.name)
+	else:
+		print("not network", self.name)
 	direction.y = -.1
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
@@ -56,6 +63,7 @@ func _ready():
 	else:
 		$Rotation_Helper/Camera.current = true
 		print('rotate helper master false')
+	direction -= transform.basis.x
 	pass # Replace with function body.
 
 func _physics_process(delta):
@@ -78,7 +86,7 @@ func process_input(delta):
 		direction -= transform.basis.z
 	elif Input.is_action_pressed("ui_down"):
 		direction += transform.basis.z
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		fire_weapon()
 		
 	direction = direction.normalized()
@@ -121,22 +129,33 @@ func _input(event):
 
 
 func fire_weapon():
-	print("lol")
-	var ray = $Rotation_Helper/Camera/RayCast
-	ray.force_raycast_update()
-	if ray.is_colliding():
-		var body = ray.get_collider()
-		
-		if body == player_node:
-			pass
-		elif body.has_method("bullet_hit"):
-			body.bullet_hit(DAMAGE, ray.global_transform)
-	
-	pass
+	if is_network_master():
+		var ray = $Rotation_Helper/Camera/RayCast
+		ray.force_raycast_update()
+		if ray.is_colliding():
+			print("colliding")
+			var body = ray.get_collider()
+			
+			if body == player_node:
+				print("player node")
+				pass
+			if body.has_method("bullet_hit"):
+				print("bullet hit")
+				body.bullet_hit(DAMAGE)
+		else:
+			print("not")
+		pass
 
 func bullet_hit(damage):
-	print("lol")
+	if is_network_master():
+		print("Network maseter")
+	if not is_network_master():
+		print("not Network master")
+		rpc_unreliable("_death", self.name)
+		
+	
 	print(damage)
+	print(self.name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
