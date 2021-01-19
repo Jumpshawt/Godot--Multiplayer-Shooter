@@ -24,15 +24,21 @@ var MOUSE_SENSITIVITY = 0.05
 # gun stuff
 var player_node = null
 const DAMAGE = 4
+var bullet_scene = preload("CubeStretch.tscn")
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
+remote func _shoot(Pos1, Pos2):
+	Draw_Trail(Pos1, Pos2)
+	pass
+
 
 #set position is called by the client
 remote func _set_position(pos):
 	global_transform.origin = pos
+
 remote func _set_rotation(rot_x, rot_y):
 	$Rotation_Helper.rotation_degrees = rot_x
 	self.rotation_degrees = rot_y
@@ -153,6 +159,11 @@ func fire_weapon():
 		if ray.is_colliding():
 			print("colliding")
 			var body = ray.get_collider()
+			Globals.raycast1_point = ray.get_collision_point()
+			Draw_Trail($Rotation_Helper/Camera/scifigun.global_transform, ray.get_collision_point())
+			rpc_unreliable("_shoot",$Rotation_Helper/Camera/scifigun.global_transform, ray.get_collision_point())
+			
+#			clone.scale = Vector3(self.global_transform.origin.distance_to(Globals.raycast1_point))
 			
 			if body == player_node:
 				print("player node")
@@ -163,6 +174,17 @@ func fire_weapon():
 		else:
 			print("not")
 		pass
+
+
+func Draw_Trail(Pos1, Pos2):
+	if is_network_master():
+		print("is not master network and the two positions are ", Pos1, Pos2)
+	var clone = bullet_scene.instance()
+	var scene_root = get_tree().root.get_children()[0]
+	clone.global_transform = Pos1
+	clone.look_at1 = Pos2
+	scene_root.add_child(clone)
+
 
 func bullet_hit(damage):
 	if is_network_master():

@@ -6,6 +6,7 @@ var player2id = -1
 # var b = "text"
 var respawn1 = Vector3()
 var respawn2 = Vector3()
+var raycast1_point = Vector3()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

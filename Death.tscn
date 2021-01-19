@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_color = Color( 0.87451, 0, 0, 1 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
+
+[node name="Particles" type="Particles"]
+speed_scale = 2.0
+explosiveness = 0.19
+randomness = 0.72
+fixed_fps = 30
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 3 )
