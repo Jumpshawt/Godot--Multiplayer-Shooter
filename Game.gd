@@ -14,14 +14,15 @@ func _ready():
 	player1.set_name(str(get_tree().get_network_unique_id()))
 	player1.set_network_master(get_tree().get_network_unique_id())
 	player1.global_transform = player1pos.global_transform
+	Globals.respawn1 = player1pos.global_transform
 	add_child(player1)
 	
 	var player2 = preload("res://Player.tscn").instance()
 	player2.set_name(str(Globals.player2id))
 	player2.set_network_master(Globals.player2id)
 	player2.global_transform = player2pos.global_transform
+	Globals.respawn2 = player2pos.global_transform
 	add_child(player2)
-	pass # Replace with function body.
 
 
 #func _process(delta):

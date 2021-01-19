@@ -39,6 +39,10 @@ remote func _set_rotation(rot_x, rot_y):
 #death
 remote func _death(name):
 	print(name)
+	$RichTextLabel.visible = true
+	self.global_transform = Globals.respawn1
+	rpc_unreliable("_set_position", global_transform.origin)
+	direction -= transform.basis.x
 	if name == self.name:
 		print("death")
 ##test line plz remove later
@@ -47,10 +51,18 @@ remote func _death(name):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	
+	
 	if is_network_master():
 		print("network master is", self.name)
+		self.global_transform = Globals.respawn1
 	else:
 		print("not network", self.name)
+		self.global_transform = Globals.respawn1
+#		rpc_unreliable("_set_position", global_transform.origin)
+#		move_and_slide(global_transform.origin)
+		
 	direction.y = -.1
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
@@ -116,15 +128,21 @@ func process_movement(delta):
 func _input(event):
 	
 	if is_network_master():
+		if Input.is_action_just_pressed("ui_cancel"):
+			print("pressed esc")
+			if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			else:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 			self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
-	
 			var camera_rot = rotation_helper.rotation_degrees
 			camera_rot.x = clamp(camera_rot.x, -70, 70)
 			if is_network_master():
 				rotation_helper.rotation_degrees = camera_rot
 			rpc_unreliable("_set_rotation", rotation_helper.rotation_degrees, self.rotation_degrees)
+
 	
 
 
