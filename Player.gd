@@ -1,5 +1,11 @@
 extends KinematicBody
 
+#preload the ragdoll scene
+var ragdoll_scene = preload("res://Player_ragdoll.tscn")
+
+#variable for when you die to prevent movement
+var can_move = true
+
 # movement stuff 
 const GRAVITY = -24.8
 var vert = Vector3()
@@ -42,24 +48,23 @@ remote func _set_position(pos):
 remote func _set_rotation(rot_x, rot_y):
 	$Rotation_Helper.rotation_degrees = rot_x
 	self.rotation_degrees = rot_y
+	
 #death
 remote func _death(name):
 	$damage.emitting = true
 	print(name)
-	$RichTextLabel.visible = true
-	self.global_transform = Globals.respawn1
-	rpc_unreliable("_set_position", global_transform.origin)
 	direction -= transform.basis.x
 	if name == self.name:
+		can_move = false
+		$RichTextLabel.visible = true
 		print("death")
+	$MeshInstance.visible = false
+	$Respawn.start()
 ##test line plz remove later
 #remote func _printshit(lol):
-#	print("lolepic")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	
 	
 	if is_network_master():
 		print("network master is", self.name)
@@ -92,6 +97,7 @@ func _physics_process(delta):
 
 func process_input(delta):
 	
+	
 	direction = Vector3()
 	
 	#process the keybinds
@@ -109,26 +115,26 @@ func process_input(delta):
 		fire_weapon()
 		
 	direction = direction.normalized()
-	
-	#jumping
-	
-	
+		
+		#jumping
+		
+		
 	if is_on_floor():
 		vert.y = 0
 		if Input.is_action_just_pressed("jump"):
 			print("pressed jump")
 			vert.y = JUMP_SPEED
 			direction += transform.basis.x
-	
+
 #	print("not on floor")
 	vert.y += GRAVITY * delta
 
 func process_movement(delta):
 	if direction != Vector3() or not is_on_floor():
 		if is_network_master():
-			move_and_slide(vert + direction * speed, Vector3.UP)
-			
-			rpc_unreliable("_set_position", global_transform.origin)
+			if can_move == true:
+				move_and_slide(vert + direction * speed, Vector3.UP)
+				rpc_unreliable("_set_position", global_transform.origin)
 		
 
 #processes mouse rotation shit
@@ -188,12 +194,20 @@ func Draw_Trail(Pos1, Pos2):
 	scene_root.add_child(clone)
 
 
+
 func bullet_hit(damage):
 	if is_network_master():
 		print("Network maseter")
 	if not is_network_master():
+		$damage.emitting = true
 		print("not Network master")
+		var clone = ragdoll_scene.instance()
+		var scene_root = get_tree().root.get_children()[0]
+		clone.global_transform = self.global_transform
+		scene_root.add_child(clone)
 		rpc_unreliable("_death", self.name)
+		_death("lol")
+
 		
 	
 	print(damage)
@@ -202,3 +216,12 @@ func bullet_hit(damage):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Respawn_timeout():
+	can_move = true
+	$MeshInstance.visible = true
+	$damage.emitting = false
+	self.global_transform = Globals.respawn1
+	rpc_unreliable("_set_position", global_transform.origin)
+	pass # Replace with function body.

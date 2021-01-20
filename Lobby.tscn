@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Lobby.gd" type="Script" id=1]
+[ext_resource path="res://ip adress.gd" type="Script" id=2]
 
 [node name="Lobby" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,6 +22,16 @@ margin_top = 371.851
 margin_right = 738.158
 margin_bottom = 422.851
 text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 699.294
+margin_top = 499.496
+margin_right = 1023.29
+margin_bottom = 592.496
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

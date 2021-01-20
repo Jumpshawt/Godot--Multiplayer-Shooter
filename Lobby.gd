@@ -5,6 +5,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+var ip_adress = "127.0.0.1"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,7 +30,7 @@ func _on_Button_Host_pressed():
 
 func _on_Button_join_pressed():
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client("127.0.0.1", 4242)
+	peer.create_client(ip_adress, 4242)
 	get_tree().set_network_peer(peer)
 func _player_connected(id):
 	print("epic")

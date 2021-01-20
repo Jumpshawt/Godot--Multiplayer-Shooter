@@ -8,7 +8,7 @@ onready var player2pos = $Player2Pos
 # var b = "text"
 
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node entsers the scene tree for the first time.
 func _ready():
 	var player1 = preload("res://Player.tscn").instance()
 	player1.set_name(str(get_tree().get_network_unique_id()))
