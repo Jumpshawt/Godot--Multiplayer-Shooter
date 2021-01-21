@@ -51,14 +51,14 @@ remote func _set_rotation(rot_x, rot_y):
 	
 #death
 remote func _death(name):
-	$damage.emitting = true
+	can_move = false
+	_player_visiblity(false)
 	print(name)
 	direction -= transform.basis.x
 	if name == self.name:
 		can_move = false
 		$RichTextLabel.visible = true
 		print("death")
-	$MeshInstance.visible = false
 	$Respawn.start()
 ##test line plz remove later
 #remote func _printshit(lol):
@@ -97,37 +97,37 @@ func _physics_process(delta):
 
 func process_input(delta):
 	
-	
-	direction = Vector3()
-	
-	#process the keybinds
-	if Input.is_action_pressed("ui_left"):
-		direction -= transform.basis.x
+	if can_move == true:
+		direction = Vector3()
 		
-	elif Input.is_action_pressed("ui_right"):
-		direction += transform.basis.x
-	
-	if Input.is_action_pressed("ui_up"):
-		direction -= transform.basis.z
-	elif Input.is_action_pressed("ui_down"):
-		direction += transform.basis.z
-	if Input.is_action_just_pressed("shoot"):
-		fire_weapon()
-		
-	direction = direction.normalized()
-		
-		#jumping
-		
-		
-	if is_on_floor():
-		vert.y = 0
-		if Input.is_action_just_pressed("jump"):
-			print("pressed jump")
-			vert.y = JUMP_SPEED
+		#process the keybinds
+		if Input.is_action_pressed("ui_left"):
+			direction -= transform.basis.x
+			
+		elif Input.is_action_pressed("ui_right"):
 			direction += transform.basis.x
-
-#	print("not on floor")
-	vert.y += GRAVITY * delta
+		
+		if Input.is_action_pressed("ui_up"):
+			direction -= transform.basis.z
+		elif Input.is_action_pressed("ui_down"):
+			direction += transform.basis.z
+		if Input.is_action_just_pressed("shoot"):
+			fire_weapon()
+			
+		direction = direction.normalized()
+			
+			#jumping
+			
+			
+		if is_on_floor():
+			vert.y = 0
+			if Input.is_action_just_pressed("jump"):
+				print("pressed jump")
+				vert.y = JUMP_SPEED
+				direction += transform.basis.x
+	
+	#	print("not on floor")
+		vert.y += GRAVITY * delta
 
 func process_movement(delta):
 	if direction != Vector3() or not is_on_floor():
@@ -220,8 +220,18 @@ func bullet_hit(damage):
 
 func _on_Respawn_timeout():
 	can_move = true
-	$MeshInstance.visible = true
-	$damage.emitting = false
+	_player_visiblity(true)
+	
 	self.global_transform = Globals.respawn1
 	rpc_unreliable("_set_position", global_transform.origin)
 	pass # Replace with function body.
+
+func _player_visiblity(state):
+	if state == false:
+		$MeshInstance.visible = false
+		$Rotation_Helper/Camera/scifigun/scifi.visible = false
+		$damage.emitting = true
+	else:
+		$MeshInstance.visible = true
+		$Rotation_Helper/Camera/scifigun/scifi.visible = true
+		$damage.emitting = false
