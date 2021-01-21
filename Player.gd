@@ -9,7 +9,8 @@ var can_move = true
 # movement stuff 
 const GRAVITY = -24.8
 var vert = Vector3()
-
+var accel = 25
+var deaccel = 25 
 var vel = Vector3()
 const MAX_SPEED = 20
 const JUMP_SPEED = 18
@@ -96,25 +97,26 @@ func _physics_process(delta):
 	
 
 func process_input(delta):
-	
+	can_move == true
 	if can_move == true:
-		direction = Vector3()
-		
+#		direction = Vector3()
+		direction.x = 0 
+		direction.z = 0 
 		#process the keybinds
 		if Input.is_action_pressed("ui_left"):
-			direction -= transform.basis.x
+			vel -= transform.basis.x
 			
 		elif Input.is_action_pressed("ui_right"):
-			direction += transform.basis.x
+			vel += transform.basis.x
 		
 		if Input.is_action_pressed("ui_up"):
-			direction -= transform.basis.z
+			vel -= transform.basis.z
 		elif Input.is_action_pressed("ui_down"):
-			direction += transform.basis.z
+			vel += transform.basis.z
 		if Input.is_action_just_pressed("shoot"):
 			fire_weapon()
 			
-		direction = direction.normalized()
+		vel = vel + vel.normalized()
 			
 			#jumping
 			
@@ -133,7 +135,7 @@ func process_movement(delta):
 	if direction != Vector3() or not is_on_floor():
 		if is_network_master():
 			if can_move == true:
-				move_and_slide(vert + direction * speed, Vector3.UP)
+				move_and_slide(vert + vel * 0.1, Vector3.UP)
 				rpc_unreliable("_set_position", global_transform.origin)
 		
 

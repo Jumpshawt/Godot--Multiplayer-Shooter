@@ -41,6 +41,7 @@ margin_left = 691.734
 margin_top = 500.755
 margin_right = 1015.73
 margin_bottom = 593.755
+text = "IP adress: 696.696.696.69"
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
