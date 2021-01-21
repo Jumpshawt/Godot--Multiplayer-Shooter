@@ -104,19 +104,20 @@ func process_input(delta):
 		direction.z = 0 
 		#process the keybinds
 		if Input.is_action_pressed("ui_left"):
-			vel -= transform.basis.x
+			direction -= transform.basis.x
 			
 		elif Input.is_action_pressed("ui_right"):
-			vel += transform.basis.x
-		
+			direction += transform.basis.x
+
 		if Input.is_action_pressed("ui_up"):
-			vel -= transform.basis.z
+			direction -= transform.basis.z
+		
 		elif Input.is_action_pressed("ui_down"):
-			vel += transform.basis.z
+			direction += transform.basis.z
 		if Input.is_action_just_pressed("shoot"):
 			fire_weapon()
 			
-		vel = vel + vel.normalized()
+		direction = direction.normalized()
 			
 			#jumping
 			
@@ -127,17 +128,25 @@ func process_input(delta):
 				print("pressed jump")
 				vert.y = JUMP_SPEED
 				direction += transform.basis.x
-	
-	#	print("not on floor")
 		vert.y += GRAVITY * delta
 
 func process_movement(delta):
 	if direction != Vector3() or not is_on_floor():
 		if is_network_master():
 			if can_move == true:
-				move_and_slide(vert + vel * 0.1, Vector3.UP)
+				var hvel = vel
+				hvel.y = 0 
+				var target = vel
+				if direction.dot(hvel) > 0:
+					accel = ACCEL
+				else:
+					accel = DEACCEL
+				hvel = hvel.linear_interpolate(target, ACCEL * delta)
+				vel.x = hvel.x 
+				vel.z = hvel.z 
+				move_and_slide(vert + direction * speed, Vector3.UP)
 				rpc_unreliable("_set_position", global_transform.origin)
-		
+				
 
 #processes mouse rotation shit
 func _input(event):
