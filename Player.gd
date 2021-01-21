@@ -229,9 +229,9 @@ func _on_Respawn_timeout():
 func _player_visiblity(state):
 	if state == false:
 		$MeshInstance.visible = false
-		$Rotation_Helper/Camera/scifigun/scifi.visible = false
+		$Rotation_Helper.visible = false
 		$damage.emitting = true
 	else:
 		$MeshInstance.visible = true
-		$Rotation_Helper/Camera/scifigun/scifi.visible = true
+		$Rotation_Helper.visible = true
 		$damage.emitting = false
