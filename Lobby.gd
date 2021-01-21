@@ -5,6 +5,8 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+const PORT : int = 27015
+const MAX_PLAYERS : int = 32 
 var ip_adress = "127.0.0.1"
 
 # Called when the node enters the scene tree for the first time.
@@ -23,15 +25,17 @@ func _ready():
 
 func _on_Button_Host_pressed():
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_server(4242, 32)
+	peer.create_server(PORT, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
 	print("hosting")
 
 
 func _on_Button_join_pressed():
+	var ip_text = $ip.text
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(ip_adress, 4242)
+	peer.create_client(ip_text, PORT)
 	get_tree().set_network_peer(peer)
+
 func _player_connected(id):
 	print("epic")
 	Globals.player2id = id
@@ -39,4 +43,3 @@ func _player_connected(id):
 	var game = preload("res://Game.tscn").instance()
 	get_tree().get_root().add_child(game)
 	hide()
-
