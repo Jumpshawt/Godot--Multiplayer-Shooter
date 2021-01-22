@@ -9,18 +9,18 @@ var can_move = true
 # movement stuff 
 const GRAVITY = -24.8
 var vert = Vector3()
-var accel = 25
-var deaccel = 25 
+var accel = 10
+var deaccel = 400
 var vel = Vector3()
-const MAX_SPEED = 20
-const JUMP_SPEED = 18
+const MAX_SPEED = 5
+const JUMP_SPEED = 10
 const ACCEL = 4.5
 
 
-var speed = 5
+var speed = 20
 var direction = Vector3()
 
-const DEACCEL= 16
+const DECEL : float = 8.0
 const MAX_SLOPE_ANGLE = 40
 
 var camera
@@ -97,7 +97,6 @@ func _physics_process(delta):
 	
 
 func process_input(delta):
-	can_move == true
 	if can_move == true:
 #		direction = Vector3()
 		direction.x = 0 
@@ -117,7 +116,7 @@ func process_input(delta):
 		if Input.is_action_just_pressed("shoot"):
 			fire_weapon()
 			
-		direction = direction.normalized()
+		
 			
 			#jumping
 			
@@ -126,26 +125,55 @@ func process_input(delta):
 			vert.y = 0
 			if Input.is_action_just_pressed("jump"):
 				print("pressed jump")
-				vert.y = JUMP_SPEED
-				direction += transform.basis.x
-		vert.y += GRAVITY * delta
+				vel * 4
+				vel.y = JUMP_SPEED
+				
+		vel.y += GRAVITY * delta
 
 func process_movement(delta):
-	if direction != Vector3() or not is_on_floor():
+	if direction != Vector3() or direction == Vector3():
 		if is_network_master():
-			if can_move == true:
-				var hvel = vel
-				hvel.y = 0 
-				var target = vel
-				if direction.dot(hvel) > 0:
-					accel = ACCEL
-				else:
-					accel = DEACCEL
-				hvel = hvel.linear_interpolate(target, ACCEL * delta)
-				vel.x = hvel.x 
-				vel.z = hvel.z 
-				move_and_slide(vert + direction * speed, Vector3.UP)
-				rpc_unreliable("_set_position", global_transform.origin)
+			if is_on_floor():
+				if can_move == true:
+					direction.y = 0
+					direction = direction.normalized()
+					var hvel = vel
+					hvel.y = 0 
+					var target = direction
+					target *= speed
+					if direction.dot(hvel) > 0:
+						accel = ACCEL
+					else:
+						accel = DECEL
+					$Speed.text = str(int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))))
+					hvel = hvel.linear_interpolate(target, accel * delta)
+					vel.x = hvel.x 
+					vel.z = hvel.z 
+					vel = move_and_slide(vel, Vector3.UP, true, 4, 0.78, false)
+					rpc_unreliable("_set_position", global_transform.origin)
+					
+			else:
+				if can_move == true:
+					direction.y = 0
+					direction = direction.normalized()
+					vel += direction.normalized()*0.1
+					var hvel = vel
+					hvel.y = 0 
+					var target = direction
+					target *= speed * 4
+					if direction.dot(hvel) > 0:
+						accel = ACCEL / 10
+					else:
+						accel = DECEL / 10
+					$Speed.text = str(int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))))
+					hvel = hvel.linear_interpolate(target, accel * delta)
+					vel.x = hvel.x
+					vel.z = hvel.z
+					vel = move_and_slide(vel, Vector3.UP, true, 4, 0.78, false)
+					rpc_unreliable("_set_position", global_transform.origin)
+					
+				
+				
 				
 
 #processes mouse rotation shit

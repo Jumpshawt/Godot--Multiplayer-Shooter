@@ -18,12 +18,20 @@ script = ExtResource( 1 )
 [node name="damage" parent="." instance=ExtResource( 3 )]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
 margin_left = 408.0
 margin_top = 262.0
 margin_right = 815.0
 margin_bottom = 350.0
 text = "YOU DIDED"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed" type="RichTextLabel" parent="."]
+margin_left = 390.0
+margin_top = 495.0
+margin_right = 797.0
+margin_bottom = 583.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
