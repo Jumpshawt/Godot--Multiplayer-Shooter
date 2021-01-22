@@ -92,6 +92,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	
 	process_input(delta)
 	process_movement(delta)
 	
@@ -99,8 +100,8 @@ func _physics_process(delta):
 func process_input(delta):
 	if can_move == true:
 #		direction = Vector3()
-		direction.x = 0 
-		direction.z = 0 
+		direction.x = 0
+		direction.z = 0
 		#process the keybinds
 		if Input.is_action_pressed("ui_left"):
 			direction -= transform.basis.x
@@ -160,11 +161,11 @@ func process_movement(delta):
 					var hvel = vel
 					hvel.y = 0 
 					var target = direction
-					target *= speed * 4
+					target *= speed * 40
 					if direction.dot(hvel) > 0:
-						accel = ACCEL / 10
+						accel = ACCEL / 300
 					else:
-						accel = DECEL / 10
+						accel = DECEL / 300
 					$Speed.text = str(int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))))
 					hvel = hvel.linear_interpolate(target, accel * delta)
 					vel.x = hvel.x
