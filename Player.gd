@@ -26,7 +26,7 @@ const MAX_SLOPE_ANGLE = 40
 var camera
 var rotation_helper
 
-var MOUSE_SENSITIVITY = 0.05
+var MOUSE_SENSITIVITY = 0.2
 
 # gun stuff
 var player_node = null
@@ -146,11 +146,11 @@ func process_movement(delta):
 					var cur_speed = int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z)))))
 					var cam_speed = cam_vector * velocity1
 					$Speed.text = str(int(velocity1), direction, cam_vector, abs(hvel.normalized().dot(direction)), cur_speed)
-					if abs(hvel.normalized().dot(direction)) < .25 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10:
-						print("strafe")
-						direction = Vector3(cam_vector.y, 0, cam_vector.x)
-						hvel.z = cam_speed.x
-						hvel.x = cam_speed.y 
+#					if abs(hvel.normalized().dot(direction)) < .25 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10:
+#						print("strafe")
+#						direction = Vector3(cam_vector.y, 0, cam_vector.x)
+#						hvel.z = cam_speed.x
+#						hvel.x = cam_speed.y 
 					
 					var target = direction
 					target *= speed
@@ -175,21 +175,37 @@ func process_movement(delta):
 				if can_move == true:
 					direction.y = 0
 					direction = direction.normalized()
-					
-					var cam_vector = Vector2(cos(rotation.y), sin(rotation.y))
-					vel += direction.normalized()*0.1
+					#convert to camera rotation to a normalized vector
 					var hvel = vel
 					hvel.y = 0 
+					var cam_vector = Vector2(cos(rotation.y + 3), sin(rotation.y + 3 )).normalized()
+					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
+					var cur_speed = int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z)))))
+					var cam_speed = cam_vector * velocity1
+					$Speed.text = str(int(vel.normalized().dot(Vector3(cam_vector.y, 0, cam_vector.x))))
+					
+					if abs(hvel.normalized().dot(direction)) < .5 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10 and hvel.normalized().dot(Vector3(cam_vector.y, 0, cam_vector.x) ) > 0.5:
+						print("strafe")
+						direction = lerp(direction, Vector3(cam_vector.y, 0, cam_vector.x), 1)
+						hvel.z = cam_speed.x
+						hvel.x = cam_speed.y 
+					
 					var target = direction
 					target *= speed * 40
 					if direction.dot(hvel) > 0:
+						
 						accel = ACCEL / 300
 					else:
 						accel = DECEL / 300
-					$Speed.text = str(int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))))
+						
+						
+					
+					
+
 					hvel = hvel.linear_interpolate(target, accel * delta)
-					vel.x = hvel.x
+					vel.x = hvel.x 
 					vel.z = hvel.z
+					
 					vel = move_and_slide(vel, Vector3.UP, true, 4, 0.78, false)
 					rpc_unreliable("_set_position", global_transform.origin)
 					
