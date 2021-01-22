@@ -124,7 +124,7 @@ func process_input(delta):
 			
 		if is_on_floor():
 			vert.y = 0
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_pressed("jump"):
 				print("pressed jump")
 				vel * 4
 				vel.y = JUMP_SPEED
@@ -138,18 +138,29 @@ func process_movement(delta):
 				if can_move == true:
 					direction.y = 0
 					direction = direction.normalized()
+					#convert to camera rotation to a normalized vector
+					var cam_vector = Vector2(cos(rotation.y + 3), sin(rotation.y + 3 ))
 					var hvel = vel
 					hvel.y = 0 
 					var target = direction
 					target *= speed
 					if direction.dot(hvel) > 0:
-						accel = ACCEL
+						
+						accel = ACCEL	
 					else:
 						accel = DECEL
-					$Speed.text = str(int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))))
+						
+						
+					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
+					var cam_speed = cam_vector * velocity1
+					$Speed.text = str(int(velocity1), direction, cam_vector, hvel.dot(direction))
+					
+					hvel.z = cam_speed.x
+					hvel.x = cam_speed.y 
 					hvel = hvel.linear_interpolate(target, accel * delta)
 					vel.x = hvel.x 
-					vel.z = hvel.z 
+					vel.z = hvel.z
+					
 					vel = move_and_slide(vel, Vector3.UP, true, 4, 0.78, false)
 					rpc_unreliable("_set_position", global_transform.origin)
 					
@@ -157,6 +168,8 @@ func process_movement(delta):
 				if can_move == true:
 					direction.y = 0
 					direction = direction.normalized()
+					
+					var cam_vector = Vector2(cos(rotation.y), sin(rotation.y))
 					vel += direction.normalized()*0.1
 					var hvel = vel
 					hvel.y = 0 

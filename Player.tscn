@@ -40,6 +40,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="rotation" type="RichTextLabel" parent="."]
+margin_left = -480.153
+margin_top = 106.828
+margin_right = -73.153
+margin_bottom = 194.828
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Feet_CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.343881, 0 )
 shape = SubResource( 1 )
