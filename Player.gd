@@ -139,9 +139,19 @@ func process_movement(delta):
 					direction.y = 0
 					direction = direction.normalized()
 					#convert to camera rotation to a normalized vector
-					var cam_vector = Vector2(cos(rotation.y + 3), sin(rotation.y + 3 ))
 					var hvel = vel
 					hvel.y = 0 
+					var cam_vector = Vector2(cos(rotation.y + 3), sin(rotation.y + 3 )).normalized()
+					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
+					var cur_speed = int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z)))))
+					var cam_speed = cam_vector * velocity1
+					$Speed.text = str(int(velocity1), direction, cam_vector, abs(hvel.normalized().dot(direction)), cur_speed)
+					if abs(hvel.normalized().dot(direction)) < .25 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10:
+						print("strafe")
+						direction = Vector3(cam_vector.y, 0, cam_vector.x)
+						hvel.z = cam_speed.x
+						hvel.x = cam_speed.y 
+					
 					var target = direction
 					target *= speed
 					if direction.dot(hvel) > 0:
@@ -151,12 +161,9 @@ func process_movement(delta):
 						accel = DECEL
 						
 						
-					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
-					var cam_speed = cam_vector * velocity1
-					$Speed.text = str(int(velocity1), direction, cam_vector, hvel.dot(direction))
 					
-					hvel.z = cam_speed.x
-					hvel.x = cam_speed.y 
+					
+
 					hvel = hvel.linear_interpolate(target, accel * delta)
 					vel.x = hvel.x 
 					vel.z = hvel.z
