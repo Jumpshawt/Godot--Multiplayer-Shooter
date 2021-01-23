@@ -12,7 +12,7 @@ var vert = Vector3()
 var accel = 10
 var deaccel = 400
 var vel = Vector3()
-const MAX_SPEED = 5
+const MAX_SPEED = 20
 const JUMP_SPEED = 10
 const ACCEL = 4.5
 
@@ -26,7 +26,7 @@ const MAX_SLOPE_ANGLE = 40
 var camera
 var rotation_helper
 
-var MOUSE_SENSITIVITY = 0.2
+var MOUSE_SENSITIVITY = 0.05
 
 # gun stuff
 var player_node = null
@@ -116,18 +116,13 @@ func process_input(delta):
 			direction += transform.basis.z
 		if Input.is_action_just_pressed("shoot"):
 			fire_weapon()
-			
-		
-			
-			#jumping
-			
-			
 		if is_on_floor():
 			vert.y = 0
 			if Input.is_action_pressed("jump"):
 				print("pressed jump")
-				vel * 4
+				
 				vel.y = JUMP_SPEED
+				
 				
 		vel.y += GRAVITY * delta
 
@@ -172,9 +167,11 @@ func process_movement(delta):
 					rpc_unreliable("_set_position", global_transform.origin)
 					
 			else:
+				
 				if can_move == true:
 					direction.y = 0
 					direction = direction.normalized()
+					vel += direction
 					#convert to camera rotation to a normalized vector
 					var hvel = vel
 					hvel.y = 0 
@@ -182,10 +179,9 @@ func process_movement(delta):
 					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
 					var cur_speed = int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z)))))
 					var cam_speed = cam_vector * velocity1
-					$Speed.text = str(int(vel.normalized().dot(Vector3(cam_vector.y, 0, cam_vector.x))))
+					$Speed.text = str(int(velocity1))
 					
 					if abs(hvel.normalized().dot(direction)) < .5 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10 and hvel.normalized().dot(Vector3(cam_vector.y, 0, cam_vector.x) ) > 0.5:
-						print("strafe")
 						direction = lerp(direction, Vector3(cam_vector.y, 0, cam_vector.x), 1)
 						hvel.z = cam_speed.x
 						hvel.x = cam_speed.y 
@@ -208,7 +204,7 @@ func process_movement(delta):
 					
 					vel = move_and_slide(vel, Vector3.UP, true, 4, 0.78, false)
 					rpc_unreliable("_set_position", global_transform.origin)
-					
+					speed = MAX_SPEED
 				
 				
 				
