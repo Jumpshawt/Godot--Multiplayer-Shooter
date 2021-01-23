@@ -171,7 +171,7 @@ func process_movement(delta):
 				if can_move == true:
 					direction.y = 0
 					direction = direction.normalized()
-					vel += direction
+					
 					#convert to camera rotation to a normalized vector
 					var hvel = vel
 					hvel.y = 0 

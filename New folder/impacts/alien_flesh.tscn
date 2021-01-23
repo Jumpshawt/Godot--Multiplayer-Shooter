@@ -5,13 +5,13 @@
 [ext_resource path="res://smoke_2.png" type="Texture" id=5]
 [ext_resource path="res://smoke.png" type="Texture" id=6]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=3]
 direction = Vector3( 0, 0, 0 )
 spread = 30.0
 gravity = Vector3( 0, 0.2, 0 )
@@ -22,9 +22,9 @@ angle = 720.0
 angle_random = 1.0
 scale = 10.0
 scale_random = 1.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -39,10 +39,10 @@ emission_energy = 0.25
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="QuadMesh" id=7]
-material = SubResource( 6 )
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=6]
 direction = Vector3( 0, 0, 1 )
 gravity = Vector3( 0, -4.9, 0 )
 initial_velocity = 5.0
@@ -50,7 +50,7 @@ initial_velocity_random = 1.0
 angle = 720.0
 angle_random = 1.0
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=7]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -65,8 +65,8 @@ emission_energy = 0.33
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="QuadMesh" id=10]
-material = SubResource( 9 )
+[sub_resource type="QuadMesh" id=8]
+material = SubResource( 7 )
 size = Vector2( 0.2, 0.2 )
 
 [node name="alien_flesh" type="Spatial"]
@@ -85,8 +85,8 @@ amount = 1
 one_shot = true
 explosiveness = 0.99
 local_coords = false
-process_material = SubResource( 5 )
-draw_pass_1 = SubResource( 7 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
 
 [node name="particles" type="Particles" parent="."]
 emitting = false
@@ -95,5 +95,5 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 0.99
 local_coords = false
-process_material = SubResource( 8 )
-draw_pass_1 = SubResource( 10 )
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 8 )
