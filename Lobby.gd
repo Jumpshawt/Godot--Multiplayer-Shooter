@@ -37,7 +37,6 @@ func _on_Button_Host_pressed():
 func _on_Button_join_pressed():
 	var ip_adress = $ip.text
 	var port = int($port.text)
-	
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip_adress, port)
 	get_tree().set_network_peer(peer)
@@ -45,7 +44,6 @@ func _on_Button_join_pressed():
 func _player_connected(id):
 	print("epic")
 	Globals.player2id = id
-	
 	var game = preload("res://Game.tscn").instance()
 	get_tree().get_root().add_child(game)
 	hide()
