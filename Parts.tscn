@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Textures/Test Material.material" type="Material" id=1]
 
-[sub_resource type="ArrayMesh" id=89]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "Edge"
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2.00001, 2.00001, 2.24565 ),
@@ -17,7 +17,7 @@ surfaces/0 = {
 "vertex_count": 28
 }
 
-[sub_resource type="ArrayMesh" id=90]
+[sub_resource type="ArrayMesh" id=2]
 resource_name = "Edge_corner_out"
 surfaces/0 = {
 "aabb": AABB( -1.24565, -2, -1, 2.24566, 2.00001, 2.24565 ),
@@ -32,7 +32,7 @@ surfaces/0 = {
 "vertex_count": 98
 }
 
-[sub_resource type="ArrayMesh" id=91]
+[sub_resource type="ArrayMesh" id=3]
 resource_name = "Floor"
 surfaces/0 = {
 "aabb": AABB( -1, 1, -1, 2, 1.00136e-05, 2.00001 ),
@@ -47,10 +47,10 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ConcavePolygonShape" id=84]
+[sub_resource type="ConcavePolygonShape" id=4]
 data = PoolVector3Array( 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1 )
 
-[sub_resource type="ArrayMesh" id=92]
+[sub_resource type="ArrayMesh" id=5]
 resource_name = "Wall"
 surfaces/0 = {
 "aabb": AABB( -1, -1, 1, 2, 2, 9.95398e-06 ),
@@ -65,10 +65,10 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ConcavePolygonShape" id=88]
+[sub_resource type="ConcavePolygonShape" id=6]
 data = PoolVector3Array( 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1 )
 
-[sub_resource type="ArrayMesh" id=93]
+[sub_resource type="ArrayMesh" id=7]
 resource_name = "corner_out"
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2.00001, 2, 2.00001 ),
@@ -83,10 +83,10 @@ surfaces/0 = {
 "vertex_count": 14
 }
 
-[sub_resource type="ConcavePolygonShape" id=108]
+[sub_resource type="ConcavePolygonShape" id=8]
 data = PoolVector3Array( -1, -1, -0.2589, -1, 1, -1, -1, 1, -0.2589, -1, -1, -0.2589, -1, -1, -1, -1, 1, -1, 1, -1, 1, 0.3216, 1, 1, 1, 1, 1, 1, -1, 1, 0.3216, -1, 1, 0.3216, 1, 1, 0.3216, -1, 1, -0.1238, 1, 0.8736, 0.3216, 1, 1, 0.3216, -1, 1, -0.1238, -1, 0.8736, -0.1238, 1, 0.8736, -0.1238, -1, 0.8736, -0.4888, 1, 0.5777, -0.1238, 1, 0.8736, -0.1238, -1, 0.8736, -0.4888, -1, 0.5777, -0.4888, 1, 0.5777, -0.4888, -1, 0.5777, -0.7904, 1, 0.2069, -0.4888, 1, 0.5777, -0.4888, -1, 0.5777, -0.7904, -1, 0.2069, -0.7904, 1, 0.2069, -0.7904, -1, 0.2069, -1, 1, -0.2589, -0.7904, 1, 0.2069, -0.7904, -1, 0.2069, -1, -1, -0.2589, -1, 1, -0.2589 )
 
-[sub_resource type="ArrayMesh" id=94]
+[sub_resource type="ArrayMesh" id=9]
 resource_name = "Edge_corner_out_floor"
 surfaces/0 = {
 "aabb": AABB( -1.29818, -1, -1, 2.29819, 2, 2.29456 ),
@@ -101,7 +101,10 @@ surfaces/0 = {
 "vertex_count": 28
 }
 
-[sub_resource type="ArrayMesh" id=95]
+[sub_resource type="ConcavePolygonShape" id=10]
+data = PoolVector3Array( -1, -0.7054, -0.2589, -1, 1, -1, -1, 1, -0.2589, -1, -0.7054, -0.2589, -1, -0.7054, -1, -1, 1, -1, 1, -0.7054, 1, 0.3216, 1, 1, 1, 1, 1, 1, -0.7054, 1, 0.3216, -0.7054, 1, 0.3216, 1, 1, 0.3216, -0.7054, 1, -0.1238, 1, 0.8736, 0.3216, 1, 1, 0.3216, -0.7054, 1, -0.1238, -0.7054, 0.8736, -0.1238, 1, 0.8736, -0.1238, -0.7054, 0.8736, -0.4888, 1, 0.5777, -0.1238, 1, 0.8736, -0.1238, -0.7054, 0.8736, -0.4888, -0.7054, 0.5777, -0.4888, 1, 0.5777, -0.4888, -0.7054, 0.5777, -0.7904, 1, 0.2069, -0.4888, 1, 0.5777, -0.4888, -0.7054, 0.5777, -0.7904, -0.7054, 0.2069, -0.7904, 1, 0.2069, -0.7904, -0.7054, 0.2069, -1, 1, -0.2589, -0.7904, 1, 0.2069, -0.7904, -0.7054, 0.2069, -1, -0.7054, -0.2589, -1, 1, -0.2589, -1.0464, -1, 0.3648, -1, -0.7054, -0.2589, -0.7904, -0.7054, 0.2069, -1.0464, -1, 0.3648, -1.2982, -1, -0.1949, -1, -0.7054, -0.2589, -0.7006, -1, 0.7898, -0.7904, -0.7054, 0.2069, -0.4888, -0.7054, 0.5777, -0.7006, -1, 0.7898, -1.0464, -1, 0.3648, -0.7904, -0.7054, 0.2069, -0.264, -1, 1.1437, -0.4888, -0.7054, 0.5777, -0.1238, -0.7054, 0.8736, -0.264, -1, 1.1437, -0.7006, -1, 0.7898, -0.4888, -0.7054, 0.5777, 0.2801, -1, 1.2946, -0.1238, -0.7054, 0.8736, 0.3216, -0.7054, 1, 0.2801, -1, 1.2946, -0.264, -1, 1.1437, -0.1238, -0.7054, 0.8736, 1, -1, 1.2946, 0.3216, -0.7054, 1, 1, -0.7054, 1, 1, -1, 1.2946, 0.2801, -1, 1.2946, 0.3216, -0.7054, 1, -1.2982, -1, -0.1949, -1, -0.7054, -1, -1, -0.7054, -0.2589, -1.2982, -1, -0.1949, -1.2982, -1, -1, -1, -0.7054, -1 )
+
+[sub_resource type="ArrayMesh" id=11]
 resource_name = "Edge_corner_in001"
 surfaces/0 = {
 "aabb": AABB( -1.01263, -2, -1, 2.01264, 2.00001, 2.10949 ),
@@ -116,7 +119,7 @@ surfaces/0 = {
 "vertex_count": 95
 }
 
-[sub_resource type="ArrayMesh" id=96]
+[sub_resource type="ArrayMesh" id=12]
 resource_name = "corner_in"
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2, 2, 2 ),
@@ -131,10 +134,10 @@ surfaces/0 = {
 "vertex_count": 14
 }
 
-[sub_resource type="ConcavePolygonShape" id=109]
+[sub_resource type="ConcavePolygonShape" id=13]
 data = PoolVector3Array( 1, -1, 0.2589, 1, 1, 1, 1, -1, 1, 1, -1, 0.2589, 1, 1, 0.2589, 1, 1, 1, -1, -1, -1, -0.3216, 1, -1, -0.3216, -1, -1, -1, -1, -1, -1, 1, -1, -0.3216, 1, -1, -0.3216, -1, -1, 0.1238, 1, -0.8736, 0.1238, -1, -0.8736, -0.3216, -1, -1, -0.3216, 1, -1, 0.1238, 1, -0.8736, 0.1238, -1, -0.8736, 0.4888, 1, -0.5777, 0.4888, -1, -0.5777, 0.1238, -1, -0.8736, 0.1238, 1, -0.8736, 0.4888, 1, -0.5777, 0.4888, -1, -0.5777, 0.7904, 1, -0.2069, 0.7904, -1, -0.2069, 0.4888, -1, -0.5777, 0.4888, 1, -0.5777, 0.7904, 1, -0.2069, 0.7904, -1, -0.2069, 1, 1, 0.2589, 1, -1, 0.2589, 0.7904, -1, -0.2069, 0.7904, 1, -0.2069, 1, 1, 0.2589 )
 
-[sub_resource type="ArrayMesh" id=97]
+[sub_resource type="ArrayMesh" id=14]
 resource_name = "Edge_corner_in"
 surfaces/0 = {
 "aabb": AABB( -1.00148, -1, -1, 2.00149, 2.00001, 2.00153 ),
@@ -149,7 +152,10 @@ surfaces/0 = {
 "vertex_count": 50
 }
 
-[sub_resource type="ArrayMesh" id=98]
+[sub_resource type="ConcavePolygonShape" id=15]
+data = PoolVector3Array( 0.7028, -1, 1.0015, -1, -1, 1, 0.7033, -1, 0.3698, -0.4233, -1, -0.7031, -1, -1, 1, -1.0015, -1, -0.7025, -0.4233, -1, -0.7031, -0.0432, -1, -0.5961, -1, -1, 1, -0.0432, -1, -0.5961, 0.2683, -1, -0.3441, -1, -1, 1, 0.2683, -1, -0.3441, 0.5254, -1, -0.0277, -1, -1, 1, 0.1238, -0.7054, -0.8736, 0.4888, 1, -0.5777, 0.4888, -0.7054, -0.5777, 0.1238, -0.7054, -0.8736, 0.1238, 1, -0.8736, 0.4888, 1, -0.5777, 0.7904, -0.7054, -0.2069, 1, 1, 0.2589, 1, -0.7054, 0.2589, 0.7904, -0.7054, -0.2069, 0.7904, 1, -0.2069, 1, 1, 0.2589, -0.3216, -0.7054, -1, 0.1238, 1, -0.8736, 0.1238, -0.7054, -0.8736, -0.3216, -0.7054, -1, -0.3216, 1, -1, 0.1238, 1, -0.8736, 0.4888, -0.7054, -0.5777, 0.7904, 1, -0.2069, 0.7904, -0.7054, -0.2069, 0.4888, -0.7054, -0.5777, 0.4888, 1, -0.5777, 0.7904, 1, -0.2069, 0.5254, -1, -0.0277, 0.7033, -1, 0.3698, -1, -1, 1, 1, -0.7054, 0.2589, 1, 1, 1, 1, -0.7054, 1, 1, -0.7054, 0.2589, 1, 1, 0.2589, 1, 1, 1, -1.0015, -1, -0.7025, -0.3216, -0.7054, -1, -0.4233, -1, -0.7031, -1.0015, -1, -0.7025, -1, -0.7054, -1, -0.3216, -0.7054, -1, 0.7033, -1, 0.3698, 1, -0.7054, 1, 0.7028, -1, 1.0015, 0.7033, -1, 0.3698, 1, -0.7054, 0.2589, 1, -0.7054, 1, 0.5254, -1, -0.0277, 1, -0.7054, 0.2589, 0.7033, -1, 0.3698, 0.5254, -1, -0.0277, 0.7904, -0.7054, -0.2069, 1, -0.7054, 0.2589, 0.2683, -1, -0.3441, 0.7904, -0.7054, -0.2069, 0.5254, -1, -0.0277, 0.2683, -1, -0.3441, 0.4888, -0.7054, -0.5777, 0.7904, -0.7054, -0.2069, -0.0432, -1, -0.5961, 0.4888, -0.7054, -0.5777, 0.2683, -1, -0.3441, -0.0432, -1, -0.5961, 0.1238, -0.7054, -0.8736, 0.4888, -0.7054, -0.5777, -0.4233, -1, -0.7031, 0.1238, -0.7054, -0.8736, -0.0432, -1, -0.5961, -0.4233, -1, -0.7031, -0.3216, -0.7054, -1, 0.1238, -0.7054, -0.8736, -1, -0.7054, -1, -0.3216, 1, -1, -0.3216, -0.7054, -1, -1, -0.7054, -1, -1, 1, -1, -0.3216, 1, -1 )
+
+[sub_resource type="ArrayMesh" id=16]
 resource_name = "ramp 1x3"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -6, 2, 2, 6.00001 ),
@@ -164,7 +170,7 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="ArrayMesh" id=99]
+[sub_resource type="ArrayMesh" id=17]
 resource_name = "ramp 1x2"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -4, 2, 2, 4.00001 ),
@@ -179,7 +185,7 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="ArrayMesh" id=100]
+[sub_resource type="ArrayMesh" id=18]
 resource_name = "90 degrees"
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2, 2.00001, 2.00001 ),
@@ -194,7 +200,10 @@ surfaces/0 = {
 "vertex_count": 12
 }
 
-[sub_resource type="ArrayMesh" id=101]
+[sub_resource type="ConcavePolygonShape" id=19]
+data = PoolVector3Array( -1, -1, -1, 1, 0.7054, -1, 1, -1, -1, -1, -1, -1, -1, 0.7054, -1, 1, 0.7054, -1, -1, 0.7054, -1, 1, 1, -0.7054, 1, 0.7054, -1, -1, 0.7054, -1, -1, 1, -0.7054, 1, 1, -0.7054, 1, 1, -0.7054, -1, 1, 1, 1, 1, 1, 1, 1, -0.7054, -1, 1, -0.7054, -1, 1, 1 )
+
+[sub_resource type="ArrayMesh" id=20]
 resource_name = "ramp 2x6"
 surfaces/0 = {
 "aabb": AABB( -1, 0, -6, 2, 2, 6.00001 ),
@@ -209,7 +218,7 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="ArrayMesh" id=102]
+[sub_resource type="ArrayMesh" id=21]
 resource_name = "Floor001"
 surfaces/0 = {
 "aabb": AABB( -1, 1, -1, 2, 2, 2.00001 ),
@@ -224,7 +233,7 @@ surfaces/0 = {
 "vertex_count": 156
 }
 
-[sub_resource type="ArrayMesh" id=103]
+[sub_resource type="ArrayMesh" id=22]
 resource_name = "Floor002"
 surfaces/0 = {
 "aabb": AABB( -0.437213, 2.38419e-07, -0.437213, 0.874425, 2.00001, 0.874425 ),
@@ -239,7 +248,7 @@ surfaces/0 = {
 "vertex_count": 50
 }
 
-[sub_resource type="ArrayMesh" id=104]
+[sub_resource type="ArrayMesh" id=23]
 resource_name = "Cube"
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2, 2, 2.00001 ),
@@ -254,7 +263,7 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="ArrayMesh" id=105]
+[sub_resource type="ArrayMesh" id=24]
 resource_name = "vent"
 surfaces/0 = {
 "aabb": AABB( -1, 1, -1, 2, 1.00136e-05, 2.00001 ),
@@ -269,7 +278,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=106]
+[sub_resource type="ArrayMesh" id=25]
 resource_name = "holes"
 surfaces/0 = {
 "aabb": AABB( -1, 1, -1, 2, 1.00136e-05, 2.00001 ),
@@ -284,7 +293,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=107]
+[sub_resource type="ArrayMesh" id=26]
 resource_name = "arrows"
 surfaces/0 = {
 "aabb": AABB( -1, 1, -1, 2, 1.00136e-05, 2.00001 ),
@@ -302,120 +311,135 @@ surfaces/0 = {
 [node name="parts" type="Spatial"]
 
 [node name="Edge" type="MeshInstance" parent="."]
-mesh = SubResource( 89 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="Edge_corner_out" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0 )
-mesh = SubResource( 90 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
-mesh = SubResource( 91 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Floor"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
-shape = SubResource( 84 )
+shape = SubResource( 4 )
 
 [node name="Wall" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
-mesh = SubResource( 92 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Wall"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Wall/StaticBody"]
-shape = SubResource( 88 )
+shape = SubResource( 6 )
 
 [node name="corner_out" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, 0 )
-mesh = SubResource( 93 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="corner_out"]
 
 [node name="CollisionShape" type="CollisionShape" parent="corner_out/StaticBody"]
-shape = SubResource( 108 )
+shape = SubResource( 8 )
 
 [node name="Edge_corner_out_floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, 0 )
-mesh = SubResource( 94 )
+mesh = SubResource( 9 )
 material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Edge_corner_out_floor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Edge_corner_out_floor/StaticBody"]
+shape = SubResource( 10 )
 
 [node name="Edge_corner_in001" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 2 )
-mesh = SubResource( 95 )
+mesh = SubResource( 11 )
 material/0 = null
 
 [node name="corner_in" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 2 )
-mesh = SubResource( 96 )
+mesh = SubResource( 12 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="corner_in"]
 
 [node name="CollisionShape" type="CollisionShape" parent="corner_in/StaticBody"]
-shape = SubResource( 109 )
+shape = SubResource( 13 )
 
 [node name="Edge_corner_in" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4, 2 )
-mesh = SubResource( 97 )
+mesh = SubResource( 14 )
 material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Edge_corner_in"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Edge_corner_in/StaticBody"]
+shape = SubResource( 15 )
 
 [node name="ramp 1x3" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3 )
-mesh = SubResource( 98 )
+mesh = SubResource( 16 )
 material/0 = null
 
 [node name="ramp 1x2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -9 )
-mesh = SubResource( 99 )
+mesh = SubResource( 17 )
 material/0 = null
 
 [node name="90 degrees" type="MeshInstance" parent="."]
 transform = Transform( -1, 5.6426e-07, 0, -5.6426e-07, -1, 0, 0, 0, 1, 0, -4, 2 )
-mesh = SubResource( 100 )
+mesh = SubResource( 18 )
 material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="90 degrees"]
+
+[node name="CollisionShape" type="CollisionShape" parent="90 degrees/StaticBody"]
+shape = SubResource( 19 )
 
 [node name="ramp 2x6" type="MeshInstance" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -3, 1, -3 )
-mesh = SubResource( 101 )
+mesh = SubResource( 20 )
 material/0 = null
 
 [node name="Floor001" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2 )
-mesh = SubResource( 102 )
+mesh = SubResource( 21 )
 material/0 = null
 
 [node name="Floor002" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -2 )
-mesh = SubResource( 103 )
+mesh = SubResource( 22 )
 material/0 = null
 
 [node name="Edge001" type="MeshInstance" parent="."]
 transform = Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, -2, 0, -2 )
-mesh = SubResource( 89 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="Cube" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -2 )
-mesh = SubResource( 104 )
+mesh = SubResource( 23 )
 material/0 = null
 
 [node name="vent" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
-mesh = SubResource( 105 )
+mesh = SubResource( 24 )
 material/0 = null
 
 [node name="holes" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
-mesh = SubResource( 106 )
+mesh = SubResource( 25 )
 material/0 = null
 
 [node name="arrows" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
-mesh = SubResource( 107 )
+mesh = SubResource( 26 )
 material/0 = null
