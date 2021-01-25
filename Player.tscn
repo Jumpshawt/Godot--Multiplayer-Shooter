@@ -1,14 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://scifigun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://damage.tscn" type="PackedScene" id=3]
 [ext_resource path="res://1587405462_preview_Crosshair 2.png" type="Texture" id=4]
+[ext_resource path="res://Player.tres" type="Material" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.65559, 0.573848, 1.79635 )
 
 [sub_resource type="CapsuleMesh" id=2]
+material = ExtResource( 5 )
 radius = 0.6
 mid_height = 2.4
 
@@ -36,6 +38,15 @@ margin_left = -468.826
 margin_top = 197.44
 margin_right = -61.8264
 margin_bottom = 285.44
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed2" type="RichTextLabel" parent="."]
+margin_left = -479.758
+margin_top = 124.282
+margin_right = -72.758
+margin_bottom = 212.282
 __meta__ = {
 "_edit_use_anchors_": false
 }
