@@ -295,8 +295,7 @@ func bullet_hit(damage):
 func _on_Respawn_timeout():
 	can_move = true
 	_player_visiblity(true)
-	
-	self.global_transform = Globals.respawn1
+	self.global_transform = Globals.spawns[int(rand_range(0,Globals.spawns.size()))]
 	rpc_unreliable("_set_position", global_transform.origin)
 	pass # Replace with function body.
 

@@ -1,7 +1,8 @@
 extends Spatial
 
-onready var player1pos = $Player1Pos
-onready var player2pos = $Player2Pos
+onready var SpawnPoints = $SpawnPoints
+onready var player1pos = $SpawnPoints/Player1Pos
+onready var player2pos = $SpawnPoints/Player2Pos
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -12,14 +13,10 @@ var ip_adress = "127.0.0.1"
 
 # Called when the node entsers the scene tree for the first time.
 func _ready():
-
-
-
-#func _process(delta):
-#	pass
+	get_tree().connect("network_peer_connected", self, "_player_connected")
+	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	_get_spawnpoints()
 	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-
 
 func _on_Button_Host_pressed():
 	ip_adress = $Lobby/ip.text
@@ -28,8 +25,6 @@ func _on_Button_Host_pressed():
 	peer.create_server(port, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
 	print("hosting")
-	get_tree().connect("network_peer_connected", self, "_player_connected")
-	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	var player1 = preload("res://Player.tscn").instance()
 	player1.set_name(str(get_tree().get_network_unique_id()))
 	player1.set_network_master(get_tree().get_network_unique_id())
@@ -47,8 +42,6 @@ func _on_Button_join_pressed():
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip_adress, port)
 	get_tree().set_network_peer(peer)
-	get_tree().connect("network_peer_connected", self, "_player_connected")
-	get_tree().connect("peer_disconnected", self, "_player_disconnected")
 	var player1 = preload("res://Player.tscn").instance()
 	player1.set_name(str(get_tree().get_network_unique_id()))
 	player1.set_network_master(get_tree().get_network_unique_id())
@@ -56,6 +49,7 @@ func _on_Button_join_pressed():
 	Globals.respawn1 = player1pos.global_transform
 	print("adding player 1 at" , player1pos.global_transform)
 	add_child(player1)
+	menu_vis()
 	pass # Replace with function body.
 
 func _player_connected(id):
@@ -81,3 +75,7 @@ remote func _player_free(id):
 func menu_vis():
 	$Lobby.visible = false
 	pass
+
+func _get_spawnpoints():
+	for N in SpawnPoints.get_children():
+		Globals.spawns.append(N.global_transform)

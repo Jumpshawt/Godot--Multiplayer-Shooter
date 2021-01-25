@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Level Assets.meshlib" type="MeshLibrary" id=4]
 [ext_resource path="res://Lobby.gd" type="Script" id=5]
 [ext_resource path="res://ip adress.gd" type="Script" id=6]
+[ext_resource path="res://delete soon.gd" type="Script" id=7]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -20,6 +21,29 @@ data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="Delete this" type="Spatial" parent="."]
+script = ExtResource( 7 )
+
+[node name="Spatial" type="Spatial" parent="Delete this"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85611, 7.15316, 2.93475 )
+
+[node name="Spatial3" type="Spatial" parent="Delete this"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9904, 11.5393, 2.62179 )
+
+[node name="Spatial2" type="Spatial" parent="Delete this"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5257, 11.6051, 6.47314 )
+
+[node name="SpawnPoints" type="Spatial" parent="."]
+
+[node name="Player1Pos" type="Position3D" parent="SpawnPoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2598, 9.32766, -14.8691 )
+
+[node name="Player2Pos" type="Position3D" parent="SpawnPoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -168.472, 9.47233, -219.549 )
+
+[node name="Player3Pos" type="Position3D" parent="SpawnPoints"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -173.172, 9.47233, -193.253 )
 
 [node name="Lobby" type="Node2D" parent="."]
 position = Vector2( -0.85968, 2.02054 )
@@ -76,15 +100,6 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Player1Pos" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2598, 9.32766, -14.8691 )
-
-[node name="Player2Pos" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -168.472, 9.47233, -219.549 )
-
-[node name="Player3Pos" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -173.172, 9.47233, -193.253 )
-
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 mesh_library = ExtResource( 4 )
@@ -128,9 +143,6 @@ material/0 = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance"]
 
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
-shape = SubResource( 3 )
-
 [node name="MeshInstance7" type="MeshInstance" parent="."]
 transform = Transform( 30.6784, 0, 0, 0, -15.4802, 29.1911, 0, -43.4278, -10.4055, 17.8486, -18.5899, 69.2534 )
 mesh = SubResource( 1 )
@@ -142,7 +154,7 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="MeshInstance9" type="MeshInstance" parent="."]
-transform = Transform( -2.18844e-06, 1.67402, 2.21069e-06, 0, -7.31737e-08, 50.5746, 98.1119, 1.43396e-07, 1.89366e-13, 49.7781, 49.3703, -0.64156 )
+transform = Transform( -2.18844e-06, 1.67402, 2.21069e-06, 0, -7.31737e-08, 50.5746, 98.1119, 1.43396e-07, 1.89366e-13, 71.9178, 49.3703, -0.64156 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
@@ -242,7 +254,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01669, 3.93789, 0.868993 )
 transform = Transform( 1, 0, 0, 0, -0.707859, 0.706353, 0, -0.706353, -0.707859, 0, 11.0731, -2.11721 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.589619, 0.282671, -0.756602, 0, 0.936758, 0.349978, 0.807681, -0.206354, 0.552331, 0, 0, 0 )
+transform = Transform( 0.589619, 0.282671, -0.756602, 0, 0.936758, 0.349978, 0.807681, -0.206354, 0.55233, 0, 0, 0 )
 shadow_enabled = true
+
+[node name="Spatial" type="Spatial" parent="."]
 [connection signal="pressed" from="Lobby/Button Host" to="." method="_on_Button_Host_pressed"]
 [connection signal="pressed" from="Lobby/Button join" to="." method="_on_Button_join_pressed"]
