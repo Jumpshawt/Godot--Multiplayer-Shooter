@@ -42,6 +42,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sensitivity" type="RichTextLabel" parent="."]
+margin_left = -494.297
+margin_top = -288.012
+margin_right = -87.2977
+margin_bottom = -200.012
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Speed2" type="RichTextLabel" parent="."]
 margin_left = -479.758
 margin_top = 124.282

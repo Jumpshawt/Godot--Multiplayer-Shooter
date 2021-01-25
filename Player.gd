@@ -118,6 +118,13 @@ func process_input(delta):
 			direction += transform.basis.z
 		if Input.is_action_just_pressed("shoot"):
 			fire_weapon()
+		if Input.is_action_just_pressed("sens_dec"):
+			MOUSE_SENSITIVITY -= 0.01
+			$Sensitivity.text = str(MOUSE_SENSITIVITY)
+		if Input.is_action_just_pressed("sens_inc"):
+			MOUSE_SENSITIVITY += 0.01
+			$Sensitivity.text = str(MOUSE_SENSITIVITY)
+			
 		if is_on_floor():
 			vert.y = 0
 			if Input.is_action_pressed("jump"):
@@ -142,7 +149,7 @@ func process_movement(delta):
 					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
 					var cur_speed = int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z)))))
 					var cam_speed = cam_vector * velocity1
-					$Speed.text = str(int(velocity1), direction, cam_vector, abs(hvel.normalized().dot(direction)), cur_speed)
+					$Speed.text = str(int(velocity1))
 #					if abs(hvel.normalized().dot(direction)) < .25 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10:
 #						print("strafe")
 #						direction = Vector3(cam_vector.y, 0, cam_vector.x)
