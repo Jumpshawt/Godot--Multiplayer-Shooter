@@ -68,11 +68,14 @@ remote func _death(name):
 func _ready():
 	
 	if is_network_master():
-		print("network master is", self.name)
+		print("network master is", self.name , "and is currently located at", self.global_transform.origin)
 		self.global_transform = Globals.respawn1
+		print("network master is", self.name , "and is now located at", self.global_transform.origin)
 	else:
 		print("not network", self.name)
-		self.global_transform = Globals.respawn1
+		print("not master  is", self.name , "and is currently at", self.global_transform.origin)
+		self.global_transform = Globals.respawn2
+		print("not master  is", self.name , "and is now located at", self.global_transform.origin)
 #		rpc_unreliable("_set_position", global_transform.origin)
 #		move_and_slide(global_transform.origin)
 		

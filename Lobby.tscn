@@ -16,6 +16,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="port" type="TextEdit" parent="."]
+margin_left = 503.374
+margin_top = 517.69
+margin_right = 672.374
+margin_bottom = 576.69
+text = "27015"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button Host" type="Button" parent="."]
 margin_left = 465.049
 margin_top = 232.525
@@ -37,10 +47,10 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 691.734
-margin_top = 500.755
-margin_right = 1015.73
-margin_bottom = 593.755
+margin_left = 674.381
+margin_top = 448.696
+margin_right = 998.377
+margin_bottom = 541.696
 text = "IP adress: 696.696.696.69"
 script = ExtResource( 2 )
 __meta__ = {
