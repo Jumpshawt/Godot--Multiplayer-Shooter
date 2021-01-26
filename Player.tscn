@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://scifigun.tscn" type="PackedScene" id=2]
@@ -6,25 +6,97 @@
 [ext_resource path="res://1587405462_preview_Crosshair 2.png" type="Texture" id=4]
 [ext_resource path="res://Player.tres" type="Material" id=5]
 [ext_resource path="res://sniper.wav" type="AudioStream" id=6]
-[ext_resource path="res://Name Holder.gd" type="Script" id=7]
+[ext_resource path="res://2d/2D_in_3D.gd" type="Script" id=7]
+[ext_resource path="res://comic.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://sniper.tscn" type="PackedScene" id=9]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="DynamicFont" id=1]
+size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+params_cull_mode = 2
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id=5]
+material = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 150
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=7]
+default_font = SubResource( 6 )
+
+[sub_resource type="BoxShape" id=8]
 extents = Vector3( 0.65559, 0.573848, 1.79635 )
 
-[sub_resource type="CapsuleMesh" id=2]
+[sub_resource type="CapsuleMesh" id=9]
 material = ExtResource( 5 )
 radius = 0.6
 mid_height = 2.4
 
-[sub_resource type="SpatialMaterial" id=5]
-
-[sub_resource type="PlaneMesh" id=3]
-material = SubResource( 5 )
-
-[sub_resource type="SpatialMaterial" id=4]
-
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = -46.0
+margin_top = -289.0
+margin_right = 505.0
+margin_bottom = -219.0
+theme = SubResource( 2 )
+text = " you are "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2d" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6562, 0 )
+script = ExtResource( 7 )
+
+[node name="Viewport_quad" type="MeshInstance" parent="2d"]
+transform = Transform( -2, -8.74228e-08, 5.09389e-15, 0, -2.18557e-08, -0.6665, 1.74846e-07, -1, 5.82673e-08, 0, 1.24535, -0.334875 )
+material_override = SubResource( 3 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Spatial" type="Spatial" parent="2d"]
+
+[node name="Viewport" type="Viewport" parent="2d"]
+size = Vector2( 600, 200 )
+hdr = false
+usage = 0
+render_target_v_flip = true
+
+[node name="2D_World" type="Node2D" parent="2d/Viewport"]
+
+[node name="BG" type="Panel" parent="2d/Viewport/2D_World"]
+margin_right = 600.0
+margin_bottom = 400.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="2d/Viewport/2D_World/BG"]
+margin_left = -8.24069
+margin_top = -50.1933
+margin_right = 655.759
+margin_bottom = 405.807
+theme = SubResource( 7 )
+visible_characters = 3
+text = "bro"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="2d/Viewport/2D_World"]
 
 [node name="damage" parent="." instance=ExtResource( 3 )]
 
@@ -80,7 +152,7 @@ __meta__ = {
 
 [node name="Feet_CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.343881, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 8 )
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21219, 0 )
@@ -95,12 +167,16 @@ far = 2731.3
 cast_to = Vector3( 0, 0, -1000 )
 collide_with_areas = true
 
+[node name="sniper" parent="Rotation_Helper/Camera" instance=ExtResource( 9 )]
+transform = Transform( -0.127439, 0, -1.11411e-08, 0, 0.127439, 0, 1.11411e-08, 0, -0.127439, 0.458319, 2.38419e-07, -1.27238 )
+
 [node name="scifigun" parent="Rotation_Helper/Camera" instance=ExtResource( 2 )]
 transform = Transform( -1, 2.22019e-08, 3.25084e-07, 0, 0.997676, -0.0681372, -3.25841e-07, -0.0681372, -0.997676, 0.725, -0.388, -1.227 )
+visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 9 )
 material/0 = null
 
 [node name="1587405462_preview_Crosshair 2" type="Sprite" parent="."]
@@ -116,24 +192,5 @@ autostart = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 autoplay = true
-
-[node name="Spatial" type="Spatial" parent="."]
-script = ExtResource( 7 )
-
-[node name="Viewport_quad" type="MeshInstance" parent="Spatial"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.88402, 0 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
-
-[node name="Viewport" type="Viewport" parent="Spatial"]
-size = Vector2( 100, 100 )
-usage = 0
-
-[node name="Node2D" type="Node2D" parent="Spatial/Viewport"]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Spatial/Viewport/Node2D"]
-margin_right = 40.0
-margin_bottom = 40.0
-text = "broo"
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Shoot" to="." method="_on_Shoot_timeout"]

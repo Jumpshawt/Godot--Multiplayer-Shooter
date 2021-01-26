@@ -67,7 +67,11 @@ remote func _death(name):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	$"2d/Viewport/2D_World/BG/RichTextLabel".text = self.name
 	if is_network_master():
+		$RichTextLabel2.text = str("you're player #", self.name)
+		$"2d".queue_free()
 		print("respawn 1 ", Globals.respawn1)
 		print("respawn 2 ", Globals.respawn2)
 		self.global_transform = Globals.respawn1
