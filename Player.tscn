@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://scifigun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://damage.tscn" type="PackedScene" id=3]
 [ext_resource path="res://1587405462_preview_Crosshair 2.png" type="Texture" id=4]
 [ext_resource path="res://Player.tres" type="Material" id=5]
+[ext_resource path="res://sniper.wav" type="AudioStream" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.65559, 0.573848, 1.79635 )
@@ -100,4 +101,12 @@ texture = ExtResource( 4 )
 
 [node name="Respawn" type="Timer" parent="."]
 one_shot = true
+
+[node name="Shoot" type="Timer" parent="."]
+autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
+[connection signal="timeout" from="Shoot" to="." method="_on_Shoot_timeout"]

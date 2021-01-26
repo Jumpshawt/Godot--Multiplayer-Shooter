@@ -16,6 +16,7 @@ const MAX_SPEED = 20
 const JUMP_SPEED = 10
 const ACCEL = 4.5
 
+var can_shoot = true
 
 var speed = 20
 var direction = Vector3()
@@ -117,7 +118,10 @@ func process_input(delta):
 		elif Input.is_action_pressed("ui_down"):
 			direction += transform.basis.z
 		if Input.is_action_just_pressed("shoot"):
-			fire_weapon()
+			if can_shoot == true:
+				fire_weapon()
+			
+		
 		if Input.is_action_just_pressed("sens_dec"):
 			MOUSE_SENSITIVITY -= 0.01
 			$Sensitivity.text = str(MOUSE_SENSITIVITY)
@@ -145,10 +149,7 @@ func process_movement(delta):
 					#convert to camera rotation to a normalized vector
 					var hvel = vel
 					hvel.y = 0 
-					var cam_vector = Vector2(cos(rotation.y + 3), sin(rotation.y + 3 )).normalized()
 					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
-					var cur_speed = int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z)))))
-					var cam_speed = cam_vector * velocity1
 					$Speed.text = str(int(velocity1))
 #					if abs(hvel.normalized().dot(direction)) < .25 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10:
 #						print("strafe")
@@ -203,10 +204,6 @@ func process_movement(delta):
 					else:
 						accel = DECEL / 300
 						
-						
-					
-					
-
 					hvel = hvel.linear_interpolate(target, accel * delta)
 					vel.x = hvel.x 
 					vel.z = hvel.z
@@ -241,7 +238,11 @@ func _input(event):
 
 
 func fire_weapon():
+	$AudioStreamPlayer3D.playing = false
+	$AudioStreamPlayer3D.playing = true
 	if is_network_master():
+		$Shoot.start()
+		can_shoot = false
 		var ray = $Rotation_Helper/Camera/RayCast
 		ray.force_raycast_update()
 		if ray.is_colliding():
@@ -288,9 +289,6 @@ func bullet_hit(damage):
 		scene_root.add_child(clone)
 		rpc_unreliable("_death", self.name)
 		_death("lol")
-
-		
-	
 	print(damage)
 	print(self.name)
 
@@ -305,6 +303,14 @@ func _on_Respawn_timeout():
 	self.global_transform = Globals.spawns[int(rand_range(0,Globals.spawns.size()))]
 	rpc_unreliable("_set_position", global_transform.origin)
 	pass # Replace with function body.
+
+
+func _on_Shoot_timeout():
+	can_shoot = true
+	pass # Replace with function body.
+
+
+
 
 func _player_visiblity(state):
 	if state == false:
