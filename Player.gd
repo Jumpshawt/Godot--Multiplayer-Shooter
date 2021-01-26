@@ -70,7 +70,8 @@ func _ready():
 	
 	$"2d/Viewport/2D_World/BG/RichTextLabel".text = self.name
 	if is_network_master():
-		$RichTextLabel2.text = str("you're player #", self.name)
+		$MeshInstance.visible = false
+		$RichTextLabel2.text = str("your id is #", self.name)
 		$"2d".queue_free()
 		print("respawn 1 ", Globals.respawn1)
 		print("respawn 2 ", Globals.respawn2)
@@ -251,6 +252,10 @@ func fire_weapon():
 		ray.force_raycast_update()
 		if ray.is_colliding():
 			print("colliding")
+			if $Rotation_Helper.rotation_degrees.x < -60:
+				if global_transform.origin.y < 10:
+					vel.y = JUMP_SPEED * 2.5
+					print("work")
 			var body = ray.get_collider()
 			Globals.raycast1_point = ray.get_collision_point()
 			Draw_Trail($Rotation_Helper/Camera/scifigun.global_transform, ray.get_collision_point())
@@ -325,7 +330,10 @@ func _player_visiblity(state):
 		$RichTextLabel.visible = true
 		
 	else:
-		$MeshInstance.visible = true
+		if is_network_master():
+			$MeshInstance.visible = false
+		else:
+			$MeshInstance.visible = true
 		$Rotation_Helper.visible = true
 		$damage.emitting = false
 		$RichTextLabel.visible = false
