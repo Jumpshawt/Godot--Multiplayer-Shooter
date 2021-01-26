@@ -65,17 +65,16 @@ func _player_connected(id):
 
 func _player_disconnected(id):
 	print("player ", id, " has disconnected")
-	get_node(str(id)).queue_free()
+	get_node(str(id)).call_deferred("queue_free")
 	rpc_unreliable("_player_free", id)
 	pass
 
 remote func _player_free(id):
-	get_node(str(id)).queue_free()
+	get_node(str(id)).call_deferred("queue_free")
 
 func menu_vis():
 	$Lobby.visible = false
 	pass
-
 func _get_spawnpoints():
 	for N in SpawnPoints.get_children():
 		Globals.spawns.append(N.global_transform)

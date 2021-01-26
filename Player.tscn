@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://scifigun.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://1587405462_preview_Crosshair 2.png" type="Texture" id=4]
 [ext_resource path="res://Player.tres" type="Material" id=5]
 [ext_resource path="res://sniper.wav" type="AudioStream" id=6]
+[ext_resource path="res://Name Holder.gd" type="Script" id=7]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.65559, 0.573848, 1.79635 )
@@ -14,6 +15,13 @@ extents = Vector3( 0.65559, 0.573848, 1.79635 )
 material = ExtResource( 5 )
 radius = 0.6
 mid_height = 2.4
+
+[sub_resource type="SpatialMaterial" id=5]
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=4]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -108,5 +116,24 @@ autostart = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 autoplay = true
+
+[node name="Spatial" type="Spatial" parent="."]
+script = ExtResource( 7 )
+
+[node name="Viewport_quad" type="MeshInstance" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.88402, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Viewport" type="Viewport" parent="Spatial"]
+size = Vector2( 100, 100 )
+usage = 0
+
+[node name="Node2D" type="Node2D" parent="Spatial/Viewport"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Spatial/Viewport/Node2D"]
+margin_right = 40.0
+margin_bottom = 40.0
+text = "broo"
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Shoot" to="." method="_on_Shoot_timeout"]
