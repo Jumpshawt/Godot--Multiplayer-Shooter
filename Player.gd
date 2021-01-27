@@ -52,15 +52,19 @@ remote func _set_rotation(rot_x, rot_y):
 	self.rotation_degrees = rot_y
 	
 #death
-remote func _death(name):
+remote func _death(name, id):
 	can_move = false
 	_player_visiblity(false)
-	print(name)
+	print(name, " id " ,id)
+	print(Globals.players)
+	print(Globals.players[int(id)])
+	print(Globals.players[int(id)].name)
+	print(Globals.players[int(name)])
+	print(Globals.players[int(id)].name, " killed ", Globals.players[int(name)].name)
 	direction -= transform.basis.x
-	if name == self.name:
+	if id == self.name:
 		can_move = false
 		$RichTextLabel.visible = true
-		print("death")
 	$Respawn.start()
 ##test line plz remove later
 #remote func _printshit(lol):
@@ -80,7 +84,7 @@ func _ready():
 	else:
 		print("not network", self.name)
 		print("not master  is", self.name , "and is currently at", self.global_transform.origin)
-		self.global_transform = Globals.respawn2
+		self.global_transform = Globals.spawns[1]
 		print("not master  is", self.name , "and is now located at", self.global_transform.origin)
 #		rpc_unreliable("_set_position", global_transform.origin)
 #		move_and_slide(global_transform.origin)
@@ -269,7 +273,7 @@ func fire_weapon():
 				pass
 			if body.has_method("bullet_hit"):
 				print("bullet hit")
-				body.bullet_hit(DAMAGE)
+				body.bullet_hit(DAMAGE, self.name)
 		else:
 			print("not")
 		pass
@@ -286,7 +290,7 @@ func Draw_Trail(Pos1, Pos2):
 
 
 
-func bullet_hit(damage):
+func bullet_hit(damage, id):
 	if is_network_master():
 		print("Network maseter")
 	if not is_network_master():
@@ -296,8 +300,8 @@ func bullet_hit(damage):
 		var scene_root = get_tree().root.get_children()[0]
 		clone.global_transform = self.global_transform
 		scene_root.add_child(clone)
-		rpc_unreliable("_death", self.name)
-		_death("lol")
+		rpc_unreliable("_death", self.name, id)
+		_death(self.name, id)
 	print(damage)
 	print(self.name)
 
