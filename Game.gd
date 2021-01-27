@@ -41,6 +41,7 @@ remote func _send_player_info(id, info):
 			rpc_id(id, '_send_player_info', peer_id, players[peer_id])
 	var pconnect = {name = ''}
 	pconnect.name = info
+	pconnect.points = info 
 	Globals.players[id] = pconnect
 	
 

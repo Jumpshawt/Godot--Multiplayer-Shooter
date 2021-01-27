@@ -9,6 +9,9 @@ var respawn1 = Vector3()
 var respawn2 = Vector3()
 var raycast1_point = Vector3()
 var players = { }
+var self_points = 0
+var self_deaths = 0
+var self_kills = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

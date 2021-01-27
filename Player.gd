@@ -34,6 +34,9 @@ var player_node = null
 const DAMAGE = 4
 var bullet_scene = preload("CubeStretch.tscn")
 
+var player_deaths = 0
+var player_kills = 0 
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -56,10 +59,7 @@ remote func _death(name, id):
 	can_move = false
 	_player_visiblity(false)
 	print(name, " id " ,id)
-	print(Globals.players)
-	print(Globals.players[int(id)])
-	print(Globals.players[int(id)].name)
-	print(Globals.players[int(name)])
+	
 	print(Globals.players[int(id)].name, " killed ", Globals.players[int(name)].name)
 	direction -= transform.basis.x
 	if id == self.name:
@@ -272,6 +272,8 @@ func fire_weapon():
 
 				pass
 			if body.has_method("bullet_hit"):
+				player_kills += 1
+				 
 				print("bullet hit")
 				body.bullet_hit(DAMAGE, self.name)
 		else:
@@ -288,12 +290,23 @@ func Draw_Trail(Pos1, Pos2):
 	clone.look_at1 = Pos2
 	scene_root.add_child(clone)
 
-
+remote func _transfer_kd(id, kills, deaths):
+	if id == self.name:
+		var kd_transfer = {player_kills = 0, player_deaths = 0, name = ''}
+		kd_transfer.player_kills = kills
+		kd_transfer.player_deaths = deaths
+		kd_transfer.name = self.name
+		Globals.players[id] = kd_transfer
+		print(Globals.players)
+		
 
 func bullet_hit(damage, id):
 	if is_network_master():
 		print("Network maseter")
 	if not is_network_master():
+		player_deaths += 1
+		rpc_unreliable("_transfer_kd", self.name, player_kills, player_deaths)
+		print(player_deaths)
 		$damage.emitting = true
 		print("not Network master")
 		var clone = ragdoll_scene.instance()
