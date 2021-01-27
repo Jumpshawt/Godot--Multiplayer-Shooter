@@ -92,6 +92,11 @@ sens_inc={
  ]
 }
 
+[logging]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="C:/Godot/godot.log"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
