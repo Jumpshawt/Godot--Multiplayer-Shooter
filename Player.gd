@@ -6,6 +6,10 @@ var ragdoll_scene = preload("res://Player_ragdoll.tscn")
 #variable for when you die to prevent movement
 var can_move = true
 
+var jumps = 2
+
+var used_RJ = false
+
 # movement stuff 
 const GRAVITY = -24.8
 var vert = Vector3()
@@ -71,7 +75,10 @@ remote func _death(name, id):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	var kd_transfer = {player_deaths = 0, player_kills = 0}
+#	kd_transfer.player_kills = 0
+#	kd_transfer.player_deaths = 0
+#	Globals.players[int(self.name)] = kd_transfer
 	$"2d/Viewport/2D_World/BG/RichTextLabel".text = self.name
 	if is_network_master():
 		$MeshInstance.visible = false
@@ -126,10 +133,18 @@ func process_input(delta):
 		
 		elif Input.is_action_pressed("ui_down"):
 			direction += transform.basis.z
+		if Input.is_action_pressed("zoom"):
+			$Rotation_Helper/Camera.fov = 40
+		else:
+			$Rotation_Helper/Camera.fov = 90
+			$rotation
 		if Input.is_action_just_pressed("shoot"):
 			if can_shoot == true:
 				fire_weapon()
-			
+		if Input.is_action_just_pressed("Scoreboard"):
+			show_score(true)
+		if Input.is_action_just_released("Scoreboard"):
+			show_score(false)
 		
 		if Input.is_action_just_pressed("sens_dec"):
 			MOUSE_SENSITIVITY -= 0.01
@@ -140,12 +155,23 @@ func process_input(delta):
 			
 		if is_on_floor():
 			vert.y = 0
+			jumps = 0
+			used_RJ = false
 			if Input.is_action_pressed("jump"):
+				
 				print("pressed jump")
 				
 				vel.y = JUMP_SPEED
 				
-				
+		else:
+			if Input.is_action_just_pressed("jump"):
+				if jumps > 0:
+					if vel.y > 0:
+						vel.y += JUMP_SPEED
+						jumps -=1
+					if vel.y < 0:
+						vel.y = JUMP_SPEED
+						jumps -=1
 		vel.y += GRAVITY * delta
 
 func process_movement(delta):
@@ -175,13 +201,9 @@ func process_movement(delta):
 						accel = DECEL
 						
 						
-					
-					
-
 					hvel = hvel.linear_interpolate(target, accel * delta)
 					vel.x = hvel.x 
 					vel.z = hvel.z
-					
 					vel = move_and_slide(vel, Vector3.UP, true, 4, 0.78, false)
 					rpc_unreliable("_set_position", global_transform.origin)
 					
@@ -190,7 +212,7 @@ func process_movement(delta):
 				if can_move == true:
 					direction.y = 0
 					direction = direction.normalized()
-					
+
 					#convert to camera rotation to a normalized vector
 					var hvel = vel
 					hvel.y = 0 
@@ -213,9 +235,15 @@ func process_movement(delta):
 					else:
 						accel = DECEL / 300
 						
-					hvel = hvel.linear_interpolate(target, accel * delta)
-					vel.x = hvel.x 
-					vel.z = hvel.z
+					if velocity1 < 40:
+						
+						hvel = hvel.linear_interpolate(target, accel * delta)
+						vel.x = hvel.x 
+						vel.z = hvel.z
+					else:
+						hvel = hvel.linear_interpolate(target, accel * delta)
+						vel.x *= 0.9 
+						vel.z *= 0.9
 					
 					vel = move_and_slide(vel, Vector3.UP, true, 4, 0.78, false)
 					rpc_unreliable("_set_position", global_transform.origin)
@@ -225,6 +253,8 @@ func process_movement(delta):
 				
 
 #processes mouse rotation shit
+
+
 func _input(event):
 	
 	if is_network_master():
@@ -243,8 +273,19 @@ func _input(event):
 				rotation_helper.rotation_degrees = camera_rot
 			rpc_unreliable("_set_rotation", rotation_helper.rotation_degrees, self.rotation_degrees)
 
-	
+func show_score(gaming):
+	if gaming == true:
+		$Scoreboard.visible = true
+		$Scoreboard.text = ''
+		for m in Globals.players:
+			print(m)
+			print(Globals.players)
+			$Scoreboard.text += str(Globals.players[m], "\n")
 
+	else:
+		print("hide")
+		$Scoreboard.visible = false
+	pass
 
 func fire_weapon():
 	$AudioStreamPlayer3D.playing = false
@@ -257,9 +298,10 @@ func fire_weapon():
 		if ray.is_colliding():
 			print("colliding")
 			if $Rotation_Helper.rotation_degrees.x < -60:
-				if global_transform.origin.y < 10:
-					vel.y = JUMP_SPEED * 2.5
+				if used_RJ == false:
+					vel.y += JUMP_SPEED * 3
 					print("work")
+					used_RJ = true
 			var body = ray.get_collider()
 			Globals.raycast1_point = ray.get_collision_point()
 			Draw_Trail($Rotation_Helper/Camera/scifigun.global_transform, ray.get_collision_point())

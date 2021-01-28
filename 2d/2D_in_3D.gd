@@ -9,6 +9,7 @@ func _ready():
 
 	# Retrieve the texture and set it to the viewport quad.
 	$Viewport_quad.material_override.duplicate()
+	$Viewport_quad.mesh.duplicate()
 	$Viewport_quad.material_override.albedo_texture = viewport.get_texture()
 
 func _process(delta):
