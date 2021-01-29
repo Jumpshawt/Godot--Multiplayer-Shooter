@@ -21,6 +21,7 @@ func _ready():
 func _on_Jump_pad_body_entered(body):
 	print("cring")
 	if body.is_in_group("Player"):
+		body.vel.y = 50
 		print("i emit signal haha")
 		emit_signal("gordon_is_cringing", body)
 
