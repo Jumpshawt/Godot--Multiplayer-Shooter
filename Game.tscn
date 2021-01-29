@@ -1,12 +1,13 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://CubeStretch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://2d/god.tres" type="Material" id=4]
-[ext_resource path="res://Lobby.gd" type="Script" id=5]
+[ext_resource path="res://jump pad.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ip adress.gd" type="Script" id=6]
 [ext_resource path="res://d7aopi7-df760885-8389-49a9-872d-425fee355b4f.png" type="Texture" id=7]
+[ext_resource path="res://Jump_pad.gd" type="Script" id=8]
 [ext_resource path="res://2d/building one_10312_autosave.tscn" type="PackedScene" id=9]
 [ext_resource path="res://2d/clock tower.tscn" type="PackedScene" id=10]
 
@@ -30,34 +31,37 @@ albedo_texture = ExtResource( 7 )
 [sub_resource type="ConcavePolygonShape" id=6]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
-[sub_resource type="CubeMesh" id=23]
+[sub_resource type="CubeMesh" id=7]
+
+[sub_resource type="ConcavePolygonShape" id=8]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
+[sub_resource type="CubeMesh" id=9]
+
+[sub_resource type="CubeMesh" id=10]
+
+[sub_resource type="CubeMesh" id=11]
+
+[sub_resource type="ConcavePolygonShape" id=12]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
 [sub_resource type="ConcavePolygonShape" id=13]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
-[sub_resource type="CubeMesh" id=24]
+[sub_resource type="ConcavePolygonShape" id=14]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
-[sub_resource type="CubeMesh" id=25]
+[sub_resource type="ConcavePolygonShape" id=15]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
-[sub_resource type="CubeMesh" id=8]
+[sub_resource type="ConcavePolygonShape" id=16]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
 [sub_resource type="ConcavePolygonShape" id=17]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
-[sub_resource type="ConcavePolygonShape" id=18]
-data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="ConcavePolygonShape" id=19]
-data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="ConcavePolygonShape" id=20]
-data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="ConcavePolygonShape" id=21]
-data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="ConcavePolygonShape" id=22]
-data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 7.45425, 4.06587, 10.0588 )
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
@@ -87,7 +91,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3884, 9.47233, -103.856 )
 
 [node name="Lobby" type="Node2D" parent="."]
 position = Vector2( -0.85968, 2.02054 )
-script = ExtResource( 5 )
 
 [node name="TextEdit" type="TextEdit" parent="Lobby"]
 margin_left = 500.858
@@ -211,7 +214,7 @@ shape = SubResource( 6 )
 [node name="CSGMesh2" type="CSGMesh" parent="Spatial2"]
 transform = Transform( 10.246, -1.06433e-06, 3.38083e-06, -1.28724e-06, 13.3674, 5.75569, 3.15432e-06, 8.91226, -8.63293, 41.328, -22.9934, 13.1775 )
 use_collision = true
-mesh = SubResource( 23 )
+mesh = SubResource( 7 )
 material = ExtResource( 4 )
 
 [node name="MeshInstance57" type="MeshInstance" parent="Spatial2"]
@@ -222,18 +225,18 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance57"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance57/StaticBody"]
-shape = SubResource( 13 )
+shape = SubResource( 8 )
 
 [node name="CSGMesh3" type="CSGMesh" parent="Spatial2"]
 transform = Transform( 10.25, -1.06435e-06, 4.21254e-06, -1.33602e-06, 12.2253, 7.17163, 3.12335e-06, 8.15084, -10.7567, -18.3133, -35.6776, 37.525 )
 use_collision = true
-mesh = SubResource( 24 )
+mesh = SubResource( 9 )
 material = ExtResource( 4 )
 
 [node name="CSGMesh4" type="CSGMesh" parent="Spatial2"]
 transform = Transform( 10.25, -1.06435e-06, 5.10609e-06, -1.33602e-06, 12.2253, 8.69285, 3.12335e-06, 8.15084, -13.0384, -18.3134, -20.8719, 15.3179 )
 use_collision = true
-mesh = SubResource( 25 )
+mesh = SubResource( 10 )
 material = ExtResource( 4 )
 
 [node name="MeshInstance45" type="MeshInstance" parent="Spatial2"]
@@ -308,7 +311,7 @@ material/0 = SubResource( 2 )
 
 [node name="CSGMesh" type="CSGMesh" parent="Spatial2"]
 transform = Transform( -20.9765, -6.57866e-13, -7.52513e-06, 3.79157e-06, -0.832033, -12.8112, -5.68694e-06, -0.554726, 19.2154, -48.464, 48.2532, -118.5 )
-mesh = SubResource( 8 )
+mesh = SubResource( 11 )
 
 [node name="CubeStretch" parent="Spatial2" instance=ExtResource( 3 )]
 transform = Transform( -1, 0, 3.25841e-07, 1.80753e-07, 0.832032, 0.554728, -2.7111e-07, 0.554728, -0.832032, -43.4473, 52.0117, -117.038 )
@@ -328,7 +331,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance17"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance17/StaticBody"]
-shape = SubResource( 17 )
+shape = SubResource( 12 )
 
 [node name="MeshInstance18" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 11.3125, -0.30367, 5.10609e-06, 0.17793, 13.3655, 8.69286, 0.118633, 8.91094, -13.0384, -91.0273, -6.10767, -12.1499 )
@@ -338,7 +341,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance18"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance18/StaticBody"]
-shape = SubResource( 18 )
+shape = SubResource( 13 )
 
 [node name="MeshInstance19" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 12.7183, -7.20006e-14, 5.10609e-06, -2.29887e-06, 13.3678, 8.69286, 3.44805e-06, 8.91253, -13.0384, -68.4548, -19.7845, 8.36384 )
@@ -353,7 +356,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance56"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance56/StaticBody"]
-shape = SubResource( 19 )
+shape = SubResource( 14 )
 
 [node name="MeshInstance20" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 11.3145, 0, 5.10609e-06, -2.04513e-06, 13.3678, 8.69286, 3.06748e-06, 8.91253, -13.0384, -66.8379, -37.1092, 34.349 )
@@ -403,7 +406,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance21"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance21/StaticBody"]
-shape = SubResource( 20 )
+shape = SubResource( 15 )
 
 [node name="MeshInstance23" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 11.314, -1.06433e-06, 4.77162e-06, -1.42142e-06, 13.3674, 8.12343, 3.48312e-06, 8.91226, -12.1843, -47.1414, 45.4193, -89.4347 )
@@ -413,7 +416,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance23"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance23/StaticBody"]
-shape = SubResource( 21 )
+shape = SubResource( 16 )
 
 [node name="MeshInstance24" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 11.3145, 0, 5.10609e-06, -2.04513e-06, 13.3678, 8.69286, 3.06748e-06, 8.91253, -13.0384, -85.3171, 44.7018, -88.3587 )
@@ -423,7 +426,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance24"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance24/StaticBody"]
-shape = SubResource( 22 )
+shape = SubResource( 17 )
 
 [node name="MeshInstance29" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 11.3145, -7.20006e-14, 5.10609e-06, -2.04513e-06, 13.3678, 8.69286, 3.06748e-06, 8.91253, -13.0384, -91.7222, 70.6727, -127.312 )
@@ -469,61 +472,86 @@ material/0 = ExtResource( 4 )
 transform = Transform( -1, 1.80753e-07, -2.7111e-07, 0, 0.832032, 0.554728, 3.25841e-07, 0.554728, -0.832032, -48.464, 25.587, -125.363 )
 far = 572.4
 
-[node name="clock tower" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1.86676, 0, 0, 0, 1.86676, 0, 0, 0, 1.86676, -90.8324, 6.24902, -149.031 )
+[node name="World" type="Spatial" parent="."]
+transform = Transform( -1, 1.80753e-07, -2.7111e-07, 0, 0.832032, 0.554728, 3.25841e-07, 0.554728, -0.832032, -48.464, 25.587, -125.363 )
 
-[node name="clock tower2" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1.86676, 0, 0, 0, 1.86676, 0, 0, 0, 1.86676, -20.3884, 48.046, -244.602 )
+[node name="clock tower" parent="World" instance=ExtResource( 10 )]
+transform = Transform( -1.86676, 0, 6.08267e-07, 3.37423e-07, 1.5532, 1.03554, -5.06097e-07, 1.03554, -1.5532, 42.3684, -29.2191, 8.96523 )
 
-[node name="building one_10312_autosave" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, -77.9569, 20.5366, -214.567 )
+[node name="clock tower2" parent="World" instance=ExtResource( 10 )]
+transform = Transform( -1.86676, 0, 6.08267e-07, 3.37423e-07, 1.5532, 1.03554, -5.06097e-07, 1.03554, -1.5532, -28.0756, -47.4586, 111.669 )
 
-[node name="building one_10312_autosave7" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, -196.038, 65.1603, -218.432 )
+[node name="building one_10312_autosave7" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, 147.574, -18.7017, 99.3888 )
 
-[node name="building one_10312_autosave9" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, -79.5028, 65.1603, -277.992 )
+[node name="building one_10312_autosave9" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, 31.0387, -51.7413, 148.945 )
 
-[node name="building one_10312_autosave10" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, 37.0027, 65.1603, -277.992 )
+[node name="building one_10312_autosave10" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, -85.4668, -51.7413, 148.945 )
 
-[node name="building one_10312_autosave8" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, -203.038, 65.1603, 9.83188 )
+[node name="building one_10312_autosave8" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, 154.574, 107.923, -90.534 )
 
-[node name="building one_10312_autosave11" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, -86.8302, 65.1603, 125.865 )
+[node name="building one_10312_autosave" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, 29.4929, -53.686, 71.419 )
 
-[node name="building one_10312_autosave12" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, 29.4522, 65.1603, 220.652 )
+[node name="building one_10312_autosave11" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, 38.3663, 172.289, -187.077 )
 
-[node name="building one_10312_autosave13" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, 151.452, 65.1603, 176.652 )
+[node name="building one_10312_autosave12" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, -77.9161, 224.87, -265.943 )
 
-[node name="building one_10312_autosave14" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, 151.452, 65.1603, 64.7574 )
+[node name="building one_10312_autosave13" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, -199.916, 200.462, -229.334 )
 
-[node name="building one_10312_autosave15" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, 151.452, 65.1603, -51.3004 )
+[node name="building one_10312_autosave14" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, -199.916, 138.391, -136.234 )
 
-[node name="building one_10312_autosave16" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, 151.452, 65.1603, -168.3 )
+[node name="building one_10312_autosave15" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, -199.916, 74.0109, -39.6701 )
 
-[node name="building one_10312_autosave17" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, -236.163, 65.1603, -106.923 )
+[node name="building one_10312_autosave16" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, -199.916, 9.10793, 57.6773 )
 
-[node name="building one_10312_autosave2" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, 39.6058, 20.5366, -214.567 )
+[node name="building one_10312_autosave17" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, 187.699, 43.1554, 6.60979 )
 
-[node name="building one_10312_autosave3" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, 109.637, 20.5366, -130.152 )
+[node name="building one_10312_autosave2" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, -88.0698, -53.686, 71.419 )
 
-[node name="building one_10312_autosave4" parent="." instance=ExtResource( 9 )]
-transform = Transform( 4.34031, 0, 0, 0, 4.34031, 0, 0, 0, 4.34031, -194.363, 20.5366, -97.3603 )
+[node name="building one_10312_autosave3" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, -158.101, -6.85865, 1.18296 )
 
-[node name="building one_10312_autosave5" parent="." instance=ExtResource( 9 )]
-transform = Transform( 5.023, 0, 0, 0, 4.34, 0, 0, 0, 4.34, -68.539, 20.537, 12.642 )
+[node name="building one_10312_autosave4" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -4.34031, 0, 1.41425e-06, 7.84524e-07, 3.61128, 2.40769, -1.1767e-06, 2.40769, -3.61128, 145.899, 11.3318, -26.1007 )
 
-[node name="building one_10312_autosave6" parent="." instance=ExtResource( 9 )]
-transform = Transform( 5.023, 0, 0, 0, 4.34, 0, 0, 0, 4.34, 52.7412, 20.537, 117.25 )
+[node name="building one_10312_autosave5" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -5.023, 0, 1.41415e-06, 9.07923e-07, 3.61102, 2.40752, -1.36179e-06, 2.40752, -3.61102, 20.0751, 72.3535, -117.626 )
+
+[node name="building one_10312_autosave6" parent="World" instance=ExtResource( 9 )]
+transform = Transform( -5.023, 0, 1.41415e-06, 9.07923e-07, 3.61102, 2.40752, -1.36179e-06, 2.40752, -3.61102, -101.205, 130.382, -204.663 )
+
+[node name="jump pad" parent="World" instance=ExtResource( 5 )]
+transform = Transform( -3.26834, 0, 1.06496e-06, 5.90763e-07, 2.71936, 1.81304, -8.8608e-07, 1.81304, -2.71936, -91.0127, 48.8162, -110.463 )
+
+[node name="jump pad2" parent="World" instance=ExtResource( 5 )]
+transform = Transform( -3.26834, 0, 1.06496e-06, 5.90762e-07, 2.71936, 1.81304, -8.8608e-07, 1.81304, -2.71936, -71.0196, -4.24078, -30.8829 )
+
+[node name="jump pad3" parent="World" instance=ExtResource( 5 )]
+transform = Transform( -3.26834, 0, 1.06496e-06, 5.90762e-07, 2.71936, 1.81304, -8.8608e-07, 1.81304, -2.71936, 123.949, -56.9651, 48.1979 )
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6793, 7.02059, -16.3775 )
+
+[node name="Jump_pad" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6793, 7.02059, -16.3775 )
+script = ExtResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Jump_pad"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.99997, 0 )
+shape = SubResource( 18 )
 [connection signal="pressed" from="Lobby/Button Host" to="." method="_on_Button_Host_pressed"]
 [connection signal="pressed" from="Lobby/Button join" to="." method="_on_Button_join_pressed"]
+[connection signal="body_entered" from="Jump_pad" to="Jump_pad" method="_on_Jump_pad_body_entered"]
+[connection signal="body_exited" from="Jump_pad" to="Jump_pad" method="_on_Jump_pad_body_exited"]

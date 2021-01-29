@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Jump_pad.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 7.45425, 4.06587, 10.0588 )
+
+[node name="Jump_pad" type="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6793, 7.02059, -16.3775 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.99997, 0 )
+shape = SubResource( 18 )
+[connection signal="body_entered" from="." to="." method="_on_Jump_pad_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Jump_pad_body_exited"]

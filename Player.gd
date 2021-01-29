@@ -75,6 +75,8 @@ remote func _death(name, id):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var Jump_pad = get_tree().get_root().find_node("Jump_pad", true, false)
+	Jump_pad. connect("gordon_is_cringing", self, "_jump_pad")
 	var kd_transfer = {player_deaths = 0, player_kills = 0}
 #	kd_transfer.player_kills = 0
 #	kd_transfer.player_deaths = 0
@@ -378,7 +380,12 @@ func _on_Shoot_timeout():
 	pass # Replace with function body.
 
 
-
+func _jump_pad(body):
+	print("jump_pad")
+	if body == self:
+		print("body entered")
+		vel.y = JUMP_SPEED * 5
+		pass
 
 func _player_visiblity(state):
 	if state == false:

@@ -109,3 +109,7 @@ func _get_spawnpoints():
 
 func _on_Button_Host_pressed():
 	_create_server($Lobby/TextEdit.text)
+
+
+func _on_Jump_pad_body_entered(body):
+	pass # Replace with function body.
