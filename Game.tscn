@@ -486,6 +486,13 @@ material/0 = ExtResource( 4 )
 transform = Transform( -1, 1.80753e-07, -2.7111e-07, 0, 0.832032, 0.554728, 3.25841e-07, 0.554728, -0.832032, -48.464, 25.587, -125.363 )
 far = 572.4
 
+[node name="CSGBox16" type="CSGBox" parent="."]
+transform = Transform( -0.201622, 0, -2.86523e-15, -3.12675e-13, -5.50063, 0, 4.87088e-14, 0, -0.201622, 2441.94, -86.5707, -673.778 )
+use_collision = true
+width = 0.002
+height = 3.37469
+depth = 479.148
+
 [node name="SurfMap" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 866.38, 89.3695, -286.833 )
 
@@ -628,7 +635,7 @@ material = ExtResource( 13 )
 
 [node name="Surf_reset" parent="SurfMap" instance=ExtResource( 14 )]
 transform = Transform( 1.97455, 0, 0, 0, 1, 0, 0, 0, 9.67657, 52.4509, -132.891, -46.6574 )
-reset_loc = Vector3( 1823.32, -222, -370.277 )
+reset_loc = Vector3( 866.38, 89.37, -286.833 )
 
 [node name="Surf_reset2" parent="SurfMap" instance=ExtResource( 14 )]
 transform = Transform( 7.43977, 0, 0, 0, 1, 0, 0, 0, 9.67657, 553.68, -296.447, -47.7495 )
@@ -645,11 +652,11 @@ reset_loc = Vector3( 866.38, 89.37, -286.833 )
 
 [node name="Surf_reset4" parent="SurfMap" instance=ExtResource( 14 )]
 transform = Transform( 7.43977, 0, 0, 0, 1, 0, 0, 0, 9.67657, 2016.44, -296.447, -200.845 )
-reset_loc = Vector3( 1523.22, -222.886, -370.277 )
+reset_loc = Vector3( 2441, -86.571, -673.778 )
 
 [node name="Surf_reset5" parent="SurfMap" instance=ExtResource( 14 )]
 transform = Transform( -48.0111, 0, 0, 0, -6.45331, 0, 0, 0, -62.446, 2016.44, -773.996, -200.845 )
-reset_loc = Vector3( 1523.22, -222.886, -370.277 )
+reset_loc = Vector3( 2441, -86.571, -673.778 )
 
 [node name="World" type="Spatial" parent="."]
 transform = Transform( -1, 1.80753e-07, -2.7111e-07, 0, 0.832032, 0.554728, 3.25841e-07, 0.554728, -0.832032, -48.464, 25.587, -125.363 )
