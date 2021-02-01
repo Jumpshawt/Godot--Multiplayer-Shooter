@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://scifigun.tscn" type="PackedScene" id=2]
@@ -10,6 +10,11 @@
 [ext_resource path="res://mkail3.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sniper.tscn" type="PackedScene" id=9]
 [ext_resource path="res://SteamPunkGun/3steampunk gun.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Krunker-Scope-no-background.png" type="Texture" id=11]
+[ext_resource path="res://Gradient.png" type="Texture" id=12]
+[ext_resource path="res://2d/Deaths.png" type="Texture" id=13]
+[ext_resource path="res://alpha gradient.png" type="Texture" id=14]
+[ext_resource path="res://default_env.tres" type="Environment" id=15]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -37,6 +42,52 @@ extents = Vector3( 0.65559, 0.573848, 1.79635 )
 "Player",
 ]]
 script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -410.202, -242.394 )
+scale = Vector2( 0.318418, 0.175918 )
+z_index = -3
+texture = ExtResource( 14 )
+
+[node name="Deaths" type="Sprite" parent="Sprite"]
+position = Vector2( -187.256, -130.715 )
+scale = Vector2( 0.0783435, 0.141805 )
+z_index = 2
+texture = ExtResource( 13 )
+
+[node name="Deaths2" type="Sprite" parent="Sprite"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -183.731, 76.6534 )
+scale = Vector2( 0.0783435, 0.141805 )
+z_index = 2
+texture = ExtResource( 13 )
+
+[node name="Paused" type="Sprite" parent="."]
+visible = false
+position = Vector2( 72.8897, -1.25053 )
+scale = Vector2( 3.58476, 2.83203 )
+texture = ExtResource( 14 )
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Paused"]
+margin_left = -78.0
+margin_top = -96.0
+margin_right = 100.0
+margin_bottom = 78.0
+text = "          Paused:
+
+
+
+
+
+Press esc to unpause"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -445.077, 251.325 )
+scale = Vector2( 0.157016, 0.0972865 )
+texture = ExtResource( 14 )
 
 [node name="MeshInstance" parent="." instance=ExtResource( 8 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.48686, 0 )
@@ -103,6 +154,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Kills" type="RichTextLabel" parent="."]
+margin_left = -445.139
+margin_top = -269.378
+margin_right = -38.138
+margin_bottom = -181.378
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Death" type="RichTextLabel" parent="."]
+margin_left = -444.39
+margin_top = -237.164
+margin_right = -37.3889
+margin_bottom = -149.164
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 margin_left = 105.68
 margin_top = -299.469
@@ -113,19 +182,19 @@ __meta__ = {
 }
 
 [node name="Speed" type="RichTextLabel" parent="."]
-margin_left = -468.826
-margin_top = 197.44
-margin_right = -61.8264
-margin_bottom = 285.44
+margin_left = -465.826
+margin_top = 233.383
+margin_right = -423.826
+margin_bottom = 263.383
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Sensitivity" type="RichTextLabel" parent="."]
-margin_left = -494.297
-margin_top = -288.012
-margin_right = -87.2977
-margin_bottom = -200.012
+margin_left = -500.29
+margin_top = -214.595
+margin_right = -93.2909
+margin_bottom = -126.595
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -158,6 +227,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21219, 0 )
 [node name="Model" type="Spatial" parent="Rotation_Helper"]
 
 [node name="Camera" type="Camera" parent="Rotation_Helper"]
+environment = ExtResource( 15 )
 fov = 90.0
 far = 2731.3
 
@@ -191,5 +261,40 @@ autostart = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 autoplay = true
+
+[node name="scope" type="Sprite" parent="."]
+visible = false
+position = Vector2( -4.99518, -6.68608 )
+scale = Vector2( 0.261574, 0.261574 )
+z_index = -2
+texture = ExtResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="scope"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1522.64, -51.997 )
+scale = Vector2( 5.80792, 11.157 )
+z_index = -2
+texture = ExtResource( 12 )
+
+[node name="Sprite2" type="Sprite" parent="scope"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -1545.32, -88.7864 )
+scale = Vector2( 5.80792, 11.4105 )
+z_index = -2
+texture = ExtResource( 12 )
+
+[node name="Sprite3" type="Sprite" parent="scope"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 312.969, -1145.99 )
+scale = Vector2( 10.1912, 2.52515 )
+z_index = -2
+texture = ExtResource( 12 )
+
+[node name="Sprite4" type="Sprite" parent="scope"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 131.357, 1156.6 )
+scale = Vector2( 10.1912, 2.52515 )
+z_index = -2
+texture = ExtResource( 12 )
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Shoot" to="." method="_on_Shoot_timeout"]

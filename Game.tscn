@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://Jump_pad.gd" type="Script" id=8]
 [ext_resource path="res://2d/building one_10312_autosave.tscn" type="PackedScene" id=9]
 [ext_resource path="res://2d/clock tower.tscn" type="PackedScene" id=10]
+[ext_resource path="res://2d/surf.tscn" type="PackedScene" id=11]
+[ext_resource path="res://2d/surfcurved ramp.tscn" type="PackedScene" id=12]
+[ext_resource path="res://2d/Surf Back.tres" type="Material" id=13]
+[ext_resource path="res://2d/surf reset.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -48,13 +52,13 @@ data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1
 [sub_resource type="ConcavePolygonShape" id=13]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
+[sub_resource type="ConcavePolygonShape" id=14]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
 [sub_resource type="ConcavePolygonShape" id=15]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
 [sub_resource type="ConcavePolygonShape" id=16]
-data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="ConcavePolygonShape" id=17]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
 [node name="Game" type="Spatial"]
@@ -180,7 +184,7 @@ __meta__ = {
 transform = Transform( -1, 1.80753e-07, -2.7111e-07, 0, 0.832032, 0.554728, 3.25841e-07, 0.554728, -0.832032, -48.464, 25.587, -125.363 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Spatial2"]
-transform = Transform( -388.529, 0, 0.000112485, 7.02278e-05, 1.39284, 191.5, -0.000105334, 0.928626, -287.229, -48.4449, 50.0648, -117.262 )
+transform = Transform( -388.529, 2.51075e-14, 0.000112485, 7.02278e-05, 1.39284, 191.5, -0.000105334, 0.928626, -287.229, -48.4449, 50.0648, -117.262 )
 visible = false
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
@@ -416,7 +420,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance21"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance21/StaticBody"]
-shape = SubResource( 15 )
+shape = SubResource( 14 )
 
 [node name="MeshInstance23" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 11.314, -1.06433e-06, 4.77162e-06, -1.42142e-06, 13.3674, 8.12343, 3.48312e-06, 8.91226, -12.1843, -47.1414, 45.4193, -89.4347 )
@@ -426,7 +430,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance23"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance23/StaticBody"]
-shape = SubResource( 16 )
+shape = SubResource( 15 )
 
 [node name="MeshInstance24" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 11.3145, 0, 5.10609e-06, -2.04513e-06, 13.3678, 8.69286, 3.06748e-06, 8.91253, -13.0384, -85.3171, 44.7018, -88.3587 )
@@ -436,7 +440,7 @@ material/0 = ExtResource( 4 )
 [node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance24"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance24/StaticBody"]
-shape = SubResource( 17 )
+shape = SubResource( 16 )
 
 [node name="MeshInstance29" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 11.3145, -7.20006e-14, 5.10609e-06, -2.04513e-06, 13.3678, 8.69286, 3.06748e-06, 8.91253, -13.0384, -91.7222, 70.6727, -127.312 )
@@ -481,6 +485,171 @@ material/0 = ExtResource( 4 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 1.80753e-07, -2.7111e-07, 0, 0.832032, 0.554728, 3.25841e-07, 0.554728, -0.832032, -48.464, 25.587, -125.363 )
 far = 572.4
+
+[node name="SurfMap" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 866.38, 89.3695, -286.833 )
+
+[node name="CSGBox" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, 5.68434e-14, 1, 0, -2.41585e-13, 0, 1, -13.2489, -12.5963, 1.68423 )
+use_collision = true
+width = 119.583
+height = 7.70683
+depth = 40.8368
+
+[node name="surf" parent="SurfMap/CSGBox" instance=ExtResource( 11 )]
+transform = Transform( 257.772, 1.46858e-11, 2.75027e-07, -1.46417e-11, 41.287, -1.3147e-20, -4.33877e-08, -2.4718e-21, 41.287, 270.175, -191.971, 313.672 )
+
+[node name="surf3" parent="SurfMap/CSGBox" instance=ExtResource( 11 )]
+transform = Transform( 257.772, 1.46858e-11, 2.75027e-07, -1.46417e-11, 41.287, -1.3147e-20, -4.33877e-08, -2.4718e-21, 41.287, 1932.27, -228.55, -375.171 )
+
+[node name="surf4" parent="SurfMap/CSGBox" instance=ExtResource( 11 )]
+transform = Transform( 258.173, 2.34514e-12, 6.94936e-09, -1.46645e-11, 41.287, -9.32955e-26, -4.34553e-08, -3.94637e-22, 41.287, 2315.46, -547.446, -375.171 )
+
+[node name="surf2" parent="SurfMap/CSGBox" instance=ExtResource( 11 )]
+transform = Transform( -7.43091e-07, 0, -17, 9.66338e-13, 17, 9.66338e-13, 104.695, 0, -4.57637e-06, 9.78967, -21.196, 135.77 )
+
+[node name="surfcurved ramp" parent="SurfMap/CSGBox" instance=ExtResource( 12 )]
+transform = Transform( 60.3399, 0, 5.20126e-14, -1.17549e-38, 60.3399, -2.95658e-27, 2.52801e-14, 0, 60.3399, 510.945, -189.602, 325.592 )
+
+[node name="surfcurved ramp3" parent="SurfMap/CSGBox" instance=ExtResource( 12 )]
+transform = Transform( -58.2839, 0, -15.6171, 6.74298e-12, 60.3399, 8.87731e-13, 15.6171, 0, -58.2839, 943.637, -189.602, -413.506 )
+
+[node name="surfcurved ramp2" parent="SurfMap/CSGBox" instance=ExtResource( 12 )]
+transform = Transform( -7.4309e-07, 0, -17, 9.66338e-13, 17, 9.66338e-13, 17, 0, -7.43097e-07, 9.78998, -21.196, 253.32 )
+
+[node name="CSGBox10" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, 1.5508e-12, 27.2819, 0, -2.41585e-13, 0, 1, 1523.22, -328.373, -370.277 )
+use_collision = true
+width = 190.604
+height = 7.70683
+depth = 479.148
+
+[node name="CSGBox15" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, 1.5508e-12, 27.2819, 0, -2.41585e-13, 0, 1, 1427.5, -222.886, -370.277 )
+use_collision = true
+width = 0.002
+height = 3.37469
+depth = 479.148
+
+[node name="CSGBox14" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, 1.5508e-12, 27.2819, 0, -2.41585e-13, 0, 1, 1523.22, -843.475, -370.277 )
+use_collision = true
+width = 190.604
+height = 7.70683
+depth = 519.892
+
+[node name="CSGBox2" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, 1.94689e-12, 33.8629, 0, -2.55795e-13, 0, 1, -13.2495, -263.609, 55.8729 )
+use_collision = true
+width = 365.495
+height = 7.70683
+depth = 685.373
+material = ExtResource( 13 )
+
+[node name="CSGBox3" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, 5.68434e-14, 1, 0, -2.41585e-13, 0, 1, -85.3331, -80.8893, 55.873 )
+use_collision = true
+width = 51.3796
+height = 263.432
+depth = 709.941
+material = ExtResource( 13 )
+
+[node name="CSGBox4" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, -2.41585e-13, -4.25685, 0, -2.41585e-13, 0, 1, 442.875, -192.314, 416.455 )
+use_collision = true
+width = 1315.08
+height = 263.432
+depth = 67.183
+material = ExtResource( 13 )
+
+[node name="CSGBox5" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, -2.41585e-13, -4.25685, 0, -2.41585e-13, 0, 1, 363.127, -192.314, -57.9155 )
+use_collision = true
+width = 403.211
+height = 263.432
+depth = 605.133
+material = ExtResource( 13 )
+
+[node name="CSGBox6" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, -2.41585e-13, -4.25685, 0, -2.41585e-13, 0, 1, -30.7076, -192.314, -487.505 )
+use_collision = true
+width = 403.211
+height = 263.432
+depth = 605.133
+material = ExtResource( 13 )
+
+[node name="CSGBox7" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, -2.41585e-13, -4.25685, 0, -2.41585e-13, 0, 1, 1052.16, -192.314, 172.288 )
+use_collision = true
+width = 403.211
+height = 263.432
+depth = 605.133
+material = ExtResource( 13 )
+
+[node name="CSGBox11" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, -2.41585e-13, -4.25685, 0, -2.41585e-13, 0, 1, 1946.86, -192.314, 172.288 )
+use_collision = true
+width = 1503.68
+height = 263.432
+depth = 605.133
+material = ExtResource( 13 )
+
+[node name="CSGBox13" type="CSGBox" parent="SurfMap"]
+transform = Transform( -4.37111e-08, 0, -1, -2.41585e-13, -4.25685, 0, 1, 0, -4.37114e-08, 2992.79, -194.371, -231.614 )
+use_collision = true
+width = 1503.68
+height = 263.432
+depth = 605.133
+material = ExtResource( 13 )
+
+[node name="CSGBox12" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, -2.41585e-13, -4.25685, 0, -2.41585e-13, 0, 1, 1852.5, -192.314, -906.152 )
+use_collision = true
+width = 1896.52
+height = 263.432
+depth = 605.133
+material = ExtResource( 13 )
+
+[node name="CSGBox8" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, -2.41585e-13, -4.25685, 0, -2.41585e-13, 0, 1, 1052.16, -192.314, -881.566 )
+use_collision = true
+width = 1088.01
+height = 263.432
+depth = 605.133
+material = ExtResource( 13 )
+
+[node name="CSGBox9" type="CSGBox" parent="SurfMap"]
+transform = Transform( 1, 0, 1.42109e-14, -2.41585e-13, -4.25685, 0, -2.41585e-13, 0, 1, 566.238, -192.314, -515.606 )
+use_collision = true
+width = 0.002
+height = 263.432
+depth = 605.133
+material = ExtResource( 13 )
+
+[node name="Surf_reset" parent="SurfMap" instance=ExtResource( 14 )]
+transform = Transform( 1.97455, 0, 0, 0, 1, 0, 0, 0, 9.67657, 52.4509, -132.891, -46.6574 )
+reset_loc = Vector3( 1823.32, -222, -370.277 )
+
+[node name="Surf_reset2" parent="SurfMap" instance=ExtResource( 14 )]
+transform = Transform( 7.43977, 0, 0, 0, 1, 0, 0, 0, 9.67657, 553.68, -296.447, -47.7495 )
+reset_loc = Vector3( 866.38, 89.37, -286.833 )
+
+[node name="Surf_reset3" parent="SurfMap" instance=ExtResource( 14 )]
+transform = Transform( 7.43977, 0, 0, 0, 1, 0, 0, 0, 2.03465, -1021.03, 51.0863, -43.8276 )
+visible = false
+reset_loc = Vector3( 866.38, 89.37, -286.833 )
+
+[node name="Surf_reset6" parent="SurfMap" instance=ExtResource( 14 )]
+transform = Transform( 7.43977, 0, 0, 0, 1, 0, 0, 0, 9.67657, 1041.22, -296.447, -200.845 )
+reset_loc = Vector3( 866.38, 89.37, -286.833 )
+
+[node name="Surf_reset4" parent="SurfMap" instance=ExtResource( 14 )]
+transform = Transform( 7.43977, 0, 0, 0, 1, 0, 0, 0, 9.67657, 2016.44, -296.447, -200.845 )
+reset_loc = Vector3( 1523.22, -222.886, -370.277 )
+
+[node name="Surf_reset5" parent="SurfMap" instance=ExtResource( 14 )]
+transform = Transform( -48.0111, 0, 0, 0, -6.45331, 0, 0, 0, -62.446, 2016.44, -773.996, -200.845 )
+reset_loc = Vector3( 1523.22, -222.886, -370.277 )
 
 [node name="World" type="Spatial" parent="."]
 transform = Transform( -1, 1.80753e-07, -2.7111e-07, 0, 0.832032, 0.554728, 3.25841e-07, 0.554728, -0.832032, -48.464, 25.587, -125.363 )
@@ -601,6 +770,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6793, 7.02059, -16.3775 )
 
 [node name="Jump_pad" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6793, 7.02059, -16.3775 )
+visible = false
 script = ExtResource( 8 )
 [connection signal="pressed" from="Lobby/Button Host" to="." method="_on_Button_Host_pressed"]
 [connection signal="pressed" from="Lobby/Button join" to="." method="_on_Button_join_pressed"]

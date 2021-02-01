@@ -12,6 +12,7 @@ var players = { }
 var self_points = 0
 var self_deaths = 0
 var self_kills = 0
+var surf_location = Vector3()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

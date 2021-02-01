@@ -7,9 +7,9 @@ var ragdoll_scene = preload("res://Player_ragdoll.tscn")
 var can_move = true
 
 var jumps = 2
-
+var debug = true
 var used_RJ = false
-
+var max_speed = 80
 # movement stuff 
 const GRAVITY = -24.8
 var vert = Vector3()
@@ -31,15 +31,16 @@ const MAX_SLOPE_ANGLE = 40
 var camera
 var rotation_helper
 
-var MOUSE_SENSITIVITY = 0.05
+var MOUSE_SENSITIVITY = 0.08
 
+var surfing = false
 # gun stuff
 var player_node = null
 const DAMAGE = 4
 var bullet_scene = preload("CubeStretch.tscn")
 
-var player_deaths = 0
-var player_kills = 0 
+var p_deaths = 0
+var p_kills = 0
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -53,6 +54,20 @@ remote func _shoot(Pos1, Pos2):
 #set position is called by the client
 remote func _set_position(pos):
 	global_transform.origin = pos
+	
+remote func _surf():
+	surfing = true
+	
+	$Rotation_Helper/Camera.environment.fog_depth_end = 4000
+	global_transform.origin = Globals.surf_location
+	max_speed = 1000
+
+remote func _unsurf():
+	surfing = false
+	$Rotation_Helper/Camera.environment.fog_depth_end = 400
+	global_transform.origin = Globals.surf_location
+	max_speed = max_speed
+	_on_Respawn_timeout()
 
 remote func _set_rotation(rot_x, rot_y):
 	$Rotation_Helper.rotation_degrees = rot_x
@@ -75,6 +90,7 @@ remote func _death(name, id):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_transfer_kd(self.name, p_kills, p_deaths)
 	var Jump_pad = get_tree().get_root().find_node("Jump_pad", true, false)
 	Jump_pad. connect("gordon_is_cringing", self, "_jump_pad")
 	var kd_transfer = {player_deaths = 0, player_kills = 0}
@@ -113,9 +129,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	
 	process_input(delta)
 	process_movement(delta)
+	update_score()
 	
 
 func process_input(delta):
@@ -137,19 +153,31 @@ func process_input(delta):
 			direction += transform.basis.z
 		if Input.is_action_pressed("zoom"):
 			$Rotation_Helper/Camera.fov = 40
+			$scope.visible = true
 		else:
 			$Rotation_Helper/Camera.fov = 90
 			$rotation
+			$scope.visible = false
 		if Input.is_action_just_pressed("shoot"):
 			if can_shoot == true:
-				fire_weapon()
+				if surfing == false:
+					fire_weapon()
 		if Input.is_action_just_pressed("Scoreboard"):
 			show_score(true)
 		if Input.is_action_just_released("Scoreboard"):
 			show_score(false)
 		
+		if Input.is_action_just_pressed("Dev_command"):
+			if debug == true:
+				rpc_unreliable("_surf")
+				_surf()
+		if Input.is_action_just_pressed("unsurf"):
+			if debug == true:
+				rpc_unreliable("_unsurf")
+				_unsurf()
 		if Input.is_action_just_pressed("sens_dec"):
 			MOUSE_SENSITIVITY -= 0.01
+			
 			$Sensitivity.text = str(MOUSE_SENSITIVITY)
 		if Input.is_action_just_pressed("sens_inc"):
 			MOUSE_SENSITIVITY += 0.01
@@ -161,7 +189,7 @@ func process_input(delta):
 			used_RJ = false
 			if Input.is_action_pressed("jump"):
 				
-				print("pressed jump")
+#				print("pressed jump")
 				
 				vel.y = JUMP_SPEED
 				
@@ -177,6 +205,7 @@ func process_input(delta):
 		vel.y += GRAVITY * delta
 
 func process_movement(delta):
+	
 	if direction != Vector3() or direction == Vector3():
 		if is_network_master():
 			if is_on_floor():
@@ -187,7 +216,7 @@ func process_movement(delta):
 					var hvel = vel
 					hvel.y = 0 
 					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
-					$Speed.text = str(int(velocity1))
+					$Speed.text = str(int(velocity1), " u/s")
 #					if abs(hvel.normalized().dot(direction)) < .25 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10:
 #						print("strafe")
 #						direction = Vector3(cam_vector.y, 0, cam_vector.x)
@@ -222,7 +251,7 @@ func process_movement(delta):
 					var velocity1 = ((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z))))
 					var cur_speed = int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z)))))
 					var cam_speed = cam_vector * velocity1
-					$Speed.text = str(int(velocity1))
+					$Speed.text = str(int(velocity1), " u/s")
 					
 					if abs(hvel.normalized().dot(direction)) < .5 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10 and hvel.normalized().dot(Vector3(cam_vector.y, 0, cam_vector.x) ) > 0.5:
 						direction = lerp(direction, Vector3(cam_vector.y, 0, cam_vector.x), 1)
@@ -237,7 +266,7 @@ func process_movement(delta):
 					else:
 						accel = DECEL / 300
 						
-					if velocity1 < 40:
+					if velocity1 < max_speed:
 						
 						hvel = hvel.linear_interpolate(target, accel * delta)
 						vel.x = hvel.x 
@@ -263,9 +292,11 @@ func _input(event):
 		if Input.is_action_just_pressed("ui_cancel"):
 			print("pressed esc")
 			if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+				$Paused.visible = false
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			else:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				$Paused.visible = true
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 			self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
@@ -274,6 +305,15 @@ func _input(event):
 			if is_network_master():
 				rotation_helper.rotation_degrees = camera_rot
 			rpc_unreliable("_set_rotation", rotation_helper.rotation_degrees, self.rotation_degrees)
+
+func update_score():
+	if is_network_master():
+		$Kills.text = str("")
+		$Death.text = str("")
+		$Kills.text = str(p_kills, " Kills")
+		$Death.text = str(p_deaths, " Deaths")
+		
+	pass
 
 func show_score(gaming):
 	if gaming == true:
@@ -293,16 +333,17 @@ func fire_weapon():
 	$AudioStreamPlayer3D.playing = false
 	$AudioStreamPlayer3D.playing = true
 	if is_network_master():
+		
 		$Shoot.start()
 		can_shoot = false
 		var ray = $Rotation_Helper/Camera/RayCast
 		ray.force_raycast_update()
 		if ray.is_colliding():
-			print("colliding")
+#			print("colliding")
 			if $Rotation_Helper.rotation_degrees.x < -60:
 				if used_RJ == false:
 					vel.y += JUMP_SPEED * 3
-					print("work")
+#					print("work")
 					used_RJ = true
 			var body = ray.get_collider()
 			Globals.raycast1_point = ray.get_collision_point()
@@ -312,13 +353,12 @@ func fire_weapon():
 #			clone.scale = Vector3(self.global_transform.origin.distance_to(Globals.raycast1_point))
 			
 			if body == player_node:
-				print("player node")
+#				print("player node")
 
 				pass
 			if body.has_method("bullet_hit"):
-				player_kills += 1
-				 
-				print("bullet hit")
+				p_kills += 1
+#				print("bullet hit")
 				body.bullet_hit(DAMAGE, self.name)
 		else:
 			print("not")
@@ -326,8 +366,8 @@ func fire_weapon():
 
 
 func Draw_Trail(Pos1, Pos2):
-	if is_network_master():
-		print("is not master network and the two positions are ", Pos1, Pos2)
+#	if is_network_master():
+#		print("is not master network and the two positions are ", Pos1, Pos2)
 	var clone = bullet_scene.instance()
 	var scene_root = get_tree().root.get_children()[0]
 	clone.global_transform = Pos1
@@ -336,23 +376,34 @@ func Draw_Trail(Pos1, Pos2):
 
 remote func _transfer_kd(id, kills, deaths):
 	if id == self.name:
+		print("id", id, "kills", kills , "deaths", deaths)
+		print("id 2 ", id, "kills 2 ", p_kills , "deaths 2", p_deaths)
 		var kd_transfer = {player_kills = 0, player_deaths = 0, name = ''}
 		kd_transfer.player_kills = kills
 		kd_transfer.player_deaths = deaths
 		kd_transfer.name = self.name
-		Globals.players[id] = kd_transfer
+		Globals.players[int(id)] = kd_transfer
+		if kills > 0:
+			print ("kills was more than 0 setting it to ", kills, "from" , p_kills)
+			p_kills = kills
+		else:
+			pass
+		p_deaths = deaths
 		print(Globals.players)
 		
 
 func bullet_hit(damage, id):
 	if is_network_master():
-		print("Network maseter")
+		p_deaths += 1
+		pass
+#		print("Network maseter")
 	if not is_network_master():
-		player_deaths += 1
-		rpc_unreliable("_transfer_kd", self.name, player_kills, player_deaths)
-		print(player_deaths)
+		p_deaths += 1
+		_transfer_kd(self.name, p_kills, p_deaths)
+		rpc_unreliable("_transfer_kd", self.name, p_kills, p_deaths)
+		print(p_deaths)
 		$damage.emitting = true
-		print("not Network master")
+#		print("not Network master")
 		var clone = ragdoll_scene.instance()
 		var scene_root = get_tree().root.get_children()[0]
 		clone.global_transform = self.global_transform
@@ -381,9 +432,8 @@ func _on_Shoot_timeout():
 
 
 func _jump_pad(body):
-	print("jump_pad")
+#	print("jump_pad")
 	if body == self:
-		print("body entered")
 		vel.y = JUMP_SPEED * 5
 		pass
 

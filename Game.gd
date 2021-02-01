@@ -16,6 +16,7 @@ var ip_adress = "127.0.0.1"
 
 # Called when the node entsers the scene tree for the first time.
 func _ready():
+	Globals.surf_location = $SurfMap.global_transform.origin 
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	_get_spawnpoints()
@@ -93,14 +94,15 @@ func _add_player(id, name, pnum):
 
 func _player_disconnected(id):
 	print("player ", id, " has disconnected")
-	get_node(str(id)).call_deferred("queue_free")
 	rpc_unreliable("_player_free", id)
+	get_node(str(id)).call_deferred("queue_free")
 	pass
 
 remote func _player_free(id):
 	get_node(str(id)).call_deferred("queue_free")
 
 func menu_vis():
+	
 	$Lobby.visible = false
 	pass
 func _get_spawnpoints():
