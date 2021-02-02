@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://scifigun.tscn" type="PackedScene" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://2d/Deaths.png" type="Texture" id=13]
 [ext_resource path="res://alpha gradient.png" type="Texture" id=14]
 [ext_resource path="res://default_env.tres" type="Environment" id=15]
+[ext_resource path="res://scareayback (2).wav" type="AudioStream" id=16]
+[ext_resource path="res://jump_scare.png" type="Texture" id=17]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -37,6 +39,34 @@ default_font = SubResource( 4 )
 
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.65559, 0.573848, 1.79635 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Jumpscare"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("jump_scare:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Jumpscare:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
 [node name="Player" type="KinematicBody" groups=[
 "Player",
@@ -296,5 +326,18 @@ position = Vector2( 131.357, 1156.6 )
 scale = Vector2( 10.1912, 2.52515 )
 z_index = -2
 texture = ExtResource( 12 )
+
+[node name="Jumpscare" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = 9.037
+
+[node name="jump_scare" type="Sprite" parent="."]
+visible = false
+position = Vector2( 135.745, -2.50821 )
+scale = Vector2( 1.12528, 0.986252 )
+texture = ExtResource( 17 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Jumpscare = SubResource( 7 )
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Shoot" to="." method="_on_Shoot_timeout"]

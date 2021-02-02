@@ -66,7 +66,7 @@ remote func _unsurf():
 	surfing = false
 	$Rotation_Helper/Camera.environment.fog_depth_end = 400
 	global_transform.origin = Globals.surf_location
-	max_speed = max_speed
+	max_speed = 80
 	_on_Respawn_timeout()
 
 remote func _set_rotation(rot_x, rot_y):
@@ -243,7 +243,6 @@ func process_movement(delta):
 				if can_move == true:
 					direction.y = 0
 					direction = direction.normalized()
-
 					#convert to camera rotation to a normalized vector
 					var hvel = vel
 					hvel.y = 0 
@@ -252,7 +251,8 @@ func process_movement(delta):
 					var cur_speed = int(((sqrt((hvel.x * hvel.x) + (hvel.z * hvel.z)))))
 					var cam_speed = cam_vector * velocity1
 					$Speed.text = str(int(velocity1), " u/s")
-					
+					if self.global_transform.origin.y < -1000:
+						_on_Respawn_timeout()
 					if abs(hvel.normalized().dot(direction)) < .5 and abs(hvel.normalized().dot(direction)) > 0 and cur_speed > 10 and hvel.normalized().dot(Vector3(cam_vector.y, 0, cam_vector.x) ) > 0.5:
 						direction = lerp(direction, Vector3(cam_vector.y, 0, cam_vector.x), 1)
 						hvel.z = cam_speed.x
@@ -454,3 +454,7 @@ func _player_visiblity(state):
 		$damage.emitting = false
 		$RichTextLabel.visible = false
 		$Feet_CollisionShape.disabled = false
+
+func _jumpscare():
+	$AnimationPlayer.play("Jumpscare")
+	surfing = true

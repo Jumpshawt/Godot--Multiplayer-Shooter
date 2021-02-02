@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/scareayback (2).wav-3c99e53fe8736962726a62666da5a82d.sample"
+
+[deps]
+
+source_file="res://scareayback (2).wav"
+dest_files=[ "res://.import/scareayback (2).wav-3c99e53fe8736962726a62666da5a82d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

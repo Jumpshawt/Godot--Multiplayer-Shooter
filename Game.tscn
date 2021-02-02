@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://2d/surfcurved ramp.tscn" type="PackedScene" id=12]
 [ext_resource path="res://2d/Surf Back.tres" type="Material" id=13]
 [ext_resource path="res://2d/surf reset.tscn" type="PackedScene" id=14]
+[ext_resource path="res://2d/jumpscare.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -240,15 +241,22 @@ material/0 = ExtResource( 4 )
 [node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance57/StaticBody"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance58" type="MeshInstance" parent="Spatial2"]
+[node name="Spatial2" type="Spatial" parent="Spatial2"]
+transform = Transform( -7.43977, 1.87109e-14, 6.62972e-07, 1.34476e-06, 0.832032, 1.12868, -2.017e-06, 0.554728, -1.69289, 106.186, -18.3098, 234.535 )
+
+[node name="Surf_reset" parent="Spatial2/Spatial2" instance=ExtResource( 15 )]
+transform = Transform( 1, -1.6787e-22, 8.47033e-22, 5.82415e-40, 1, -1.92593e-34, 0, 0, 1, 0, 0, 0 )
+visible = false
+
+[node name="skybox" type="MeshInstance" parent="Spatial2"]
 transform = Transform( 209.023, -2.17047e-05, -6.73306e-05, -3.74539e-05, 7.75658, -114.627, 5.68871e-05, 5.17121, 171.928, 34.7957, 140.567, -14.8852 )
 visible = false
 mesh = SubResource( 1 )
 material/0 = ExtResource( 4 )
 
-[node name="StaticBody" type="StaticBody" parent="Spatial2/MeshInstance58"]
+[node name="StaticBody" type="StaticBody" parent="Spatial2/skybox"]
 
-[node name="CollisionShape" type="CollisionShape" parent="Spatial2/MeshInstance58/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Spatial2/skybox/StaticBody"]
 shape = SubResource( 8 )
 
 [node name="CSGMesh3" type="CSGMesh" parent="Spatial2"]
@@ -639,11 +647,6 @@ reset_loc = Vector3( 866.38, 89.37, -286.833 )
 
 [node name="Surf_reset2" parent="SurfMap" instance=ExtResource( 14 )]
 transform = Transform( 7.43977, 0, 0, 0, 1, 0, 0, 0, 9.67657, 553.68, -296.447, -47.7495 )
-reset_loc = Vector3( 866.38, 89.37, -286.833 )
-
-[node name="Surf_reset3" parent="SurfMap" instance=ExtResource( 14 )]
-transform = Transform( 7.43977, 0, 0, 0, 1, 0, 0, 0, 2.03465, -1021.03, 51.0863, -43.8276 )
-visible = false
 reset_loc = Vector3( 866.38, 89.37, -286.833 )
 
 [node name="Surf_reset6" parent="SurfMap" instance=ExtResource( 14 )]
